@@ -28,19 +28,17 @@ class Canvas extends Component {
             health: 0,
             touching: false,
             currentScene: 0,
-//==== SCENE WILL EQUAL DATA.SCENE=====
-            scene: 1
+            //==== SCENE WILL EQUAL DATA.SCENE=====
+            scene: 2
         }
         this.background = [];
         this.characters = [];
         this.objects = [];
-        this.spiders = [];
         this.health = [];
-        this.cliffs = [];
-        this.monkeys = [];
+
     }
-//=========================
-//handles key press events
+    //=========================
+    //handles key press events
     handleKeys(value, e) {
         let keys = this.state.keys;
         if (e.keyCode === 37) keys.left = value;
@@ -50,7 +48,7 @@ class Canvas extends Component {
             keys: keys
         });
     }
-//handles screen touch events
+    //handles screen touch events
     handleTouch(value, e) {
         console.log("value: ", value, "e: ", e.touches.length);
         let keys = this.state.keys;
@@ -59,15 +57,16 @@ class Canvas extends Component {
         } else {
             keys.up = false;
         }
-        if (e.changedTouches[0].screenX < this.state.screen.width/2) {
+        if (e.changedTouches[0].screenX < this.state.screen.width / 2) {
             keys.left = value;
-        } else if (e.changedTouches[0].screenX > this.state.screen.width/2) {
-            keys.right = value};
+        } else if (e.changedTouches[0].screenX > this.state.screen.width / 2) {
+            keys.right = value
+        };
         this.setState({
             keys: keys
         })
     }
-//handles screen resize events
+    //handles screen resize events
     handleResize() {
         this.setState({
             screen: {
@@ -77,8 +76,8 @@ class Canvas extends Component {
             }
         });
     }
-//============================================
-//starts game and activates key press/screen touch listener on component mounting
+    //============================================
+    //starts game and activates key press/screen touch listener on component mounting
     componentDidMount() {
         // console.log("props: ", this.props)
         window.addEventListener('keydown', this.handleKeys.bind(this, true));
@@ -92,8 +91,8 @@ class Canvas extends Component {
         this.startGame();
         requestAnimationFrame(() => { this.update() });
     }
-    
-//update the canvas
+
+    //update the canvas
     update() {
         // console.log("update called")
         const context = this.state.context;
@@ -112,7 +111,7 @@ class Canvas extends Component {
         this.checkSceneComplete(this.characters[0]);
     }
 
-//initial game start
+    //initial game start
     startGame() {
         console.log("startgame called")
         let background = new Background(this.state);
@@ -121,14 +120,14 @@ class Canvas extends Component {
         let character = new Character(this.state);
         this.characters.push(character);
         //======================================
-        let health = new Health (this.state);
+        let health = new Health(this.state);
         this.health.push(health);
         //======================================
-        this.generateObjects(6);
+        this.generateObjects(3);
     }
 
     generateObjects(howMany) {
-        for (let i=0; i< howMany; i++) {
+        for (let i = 0; i < howMany; i++) {
             if (this.state.scene === 0) {
                 let object = new Spider(this.state, i);
                 this.objects.push(object);
@@ -142,7 +141,7 @@ class Canvas extends Component {
             }
         }
     }
-//updates objects based on movement
+    //updates objects based on movement
     updateObjects(items, group) {
         let index = 0;
         for (let item of items) {
@@ -154,19 +153,34 @@ class Canvas extends Component {
             index++;
         }
     }
-//checks if character is touching obstacles
+    //checks if character is touching obstacles
     checkObjectsTouching(characters) {
-        for (let i=0; i<this.spiders.length; i++) {
+        for (let i = 0; i < this.objects.length; i++) {
             // console.log("spiders: ", this.spiders[i]);
-            let spider = this.spiders[i];
-            if (spider.x < (characters.x + characters.width) && spider.x > characters.x && spider.y > characters.y) {
-                this.setState({
-                    health: this.state.health + .005,
-                    touching: true
-                 });
+            let object = this.objects[i];
+            if (this.state.scene === 0) {
+                if (object.x < (characters.x + characters.width) && object.x > characters.x && object.y > characters.y) {
+                    this.setState({
+                        health: this.state.health + .005,
+                        touching: true
+                    });
+                }
+            } else if (this.state.scene === 1) {
+
+            } else if (this.state.scene === 2) {
+                if (object.x < (characters.x + characters.width) && object.x) {
+                    this.setState({
+                        health: this.state.health + .001,
+                        touching: true
+                    });
+                } else {
+                    this.setState({ touching: false });
+
+                }
             } else {
-                this.setState({ touching: false });
+                console.log("else")
             }
+
         }
     }
 
