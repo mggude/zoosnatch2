@@ -8,9 +8,17 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <div>
-        <Canvas/>
-      </div>
+      
+      <Router>
+        <>
+        <Route exact path="/" render={(props) => <Auth {...props} action="login"/>} />
+        <Route exact path="/signup" render={(props) => <Auth {...props} action="signup" />} />
+        <Route exact path="/login" render={(props) => <Auth {...props} action="login" />} />
+        <Route exact path="/game" Component={Game} />
+        </>
+      </Router>
+    
+      
     );
   }
 }

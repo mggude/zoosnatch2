@@ -80,9 +80,9 @@ class Signup extends Component {
                     </FormGroup>
                     {/* if all fields are valid, allow the user to submit the form */}
                     {(this.state.validUsername && this.state.validPassword && this.state.confirmPassword) ? (
-                        <Button onClick={this.props.handleSignup} color="success" block>Signup</Button>
+                        <Button onClick={this.props.handleSignup} color="success" >Signup</Button>
                     ) : (
-                        <Button onClick={this.props.handleSignup} color="danger" block disabled>Signup</Button>
+                        <Button onClick={this.props.handleSignup} color="danger" >Signup</Button>
                     )}
                     <p className="signupLink">
                         <Link to="/login">already have an account?  Sign in here</Link>
