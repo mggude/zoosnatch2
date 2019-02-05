@@ -27,7 +27,7 @@ class Timer extends Component {
 
     render() {
         return (
-            <bars completion={this.state.timer} />
+            <ProgressBar timer={this.state.timer} />
         )
     }
 }

@@ -3,15 +3,17 @@ import "../bandersnatch/bandersnatch.css";
 import { Col, Row, Container } from "../../components/grid/index";
 import API from "../../utils/API";
 import App from "../../App";
-import characters from "../../characters.json";
+import characters from "../characters.json";
+import { HeaderH2, ImageContainer, ImageSquare, ImageText, ProgressBar, Timer } from "./NewComponents/AllComponents";
+
 
 class Snatch extends Component {
-    constructor(state) {
-        super();
-        this.unlockedCharacters = state.unlockedCharacters;
-        this.currentCharacter = state.currentCharacter;
-        this.sceneLocation = state.sceneLocation;
-        this.points = state.points;
+
+    state ={
+        unlockedCharacters : this.props.unlockedCharacters,
+        currentCharacter : this.props.currentCharacter,
+        sceneLocation : this.props.sceneLocation,
+        points : this.props.points,
     }
     componentDidMount() {
 
@@ -23,52 +25,16 @@ class Snatch extends Component {
                 <title>Decision Time</title>
                 <div className="w3-container">
                     <div className="container">
+                        <HeaderH2 text="What Would You Like To Do?" />
+
                         <div className="row">
-                            <div className="col-md-12">
-                                <div id="displayQuestionText">
-                                    <h2>What do you want to do?</h2>
-                                </div>
-                            </div>
+                            <ImageContainer
+                                sceneLocation = {this.state.sceneLocation}
+                                currentCharacter = {this.state.currentCharacter}
+                            />
+                            <ProgressBar />
                         </div>
-                        <div className="row">
-                            <div className="col-md-6 optionOneclassName">
-                                <div id="optionOneImg">
-                                </div>
-                                <div className="timerDiv">
-                                    <div id="timerCountdownBarLeft">
-                                        <div></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6 optionTwoclassName">
-                                <div id="optionTwoImg"></div>
-                                <div className="timerDiv">
-                                    <div id="timerCountdownBarRight">
-                                        <div></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6 optionOneclassName">
-                                <div id="optionOneText" className="options"></div>
-                            </div>
-                            <div className="col-md-6 optionTwoclassName">
-                                <div id="optionTwoText" className="options"></div>
-                            </div>
-                            <div className="row"> -->
-                        <div className="col-md-6">
-                                    <div className="timerDiv">
-                                        <div id="timerCountdownBarLeft">
-                                            <div></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div id="timerCountdownBarRight">
-                                        <div></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    
                     </div>
                 </div>
             </>
