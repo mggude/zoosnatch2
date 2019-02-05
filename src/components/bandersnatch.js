@@ -33,6 +33,10 @@ class Snatch extends Component {
                                 currentCharacter = {this.state.currentCharacter}
                             />
                             <ProgressBar />
+                            <ImageText 
+                                sceneLocation = {this.state.sceneLocation}
+                                currentCharacter = {this.state.currentCharacter}
+                            />
                         </div>
                     
                     </div>
