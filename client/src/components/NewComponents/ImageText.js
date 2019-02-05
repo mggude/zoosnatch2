@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export const ImageOneText = (props) => {
     return (
         <h2>{props.imageOneText}</h2>
