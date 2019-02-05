@@ -1,4 +1,4 @@
-import Marioone from '../../images/characters/animated/animated_bear.png';
+import Marioone from '../../images/characters/animated/animated_giraffe.png';
 
 export default class Character {
     constructor(attr) {
@@ -32,16 +32,33 @@ export default class Character {
         if (state.keys.up === true) {
             this.speedY = -15;
         };
+
+
+        if (state.scene === 1) {
+            if (state.keys.up === true) {
+                this.speedY = -30;
+            }
+            if (state.keys.right === true && state.keys.up === true) {
+                this.speedX = 10;
+            }
+        };
+
+
+
     //updates location based on speed and gravity
         this.x += this.speedX;
         this.gravitySpeed += this.gravity;
         this.y += this.speedY += this.gravitySpeed;
         const context = state.context;
     //this keeps the character on the ground
-        if (this.y > this.rockBottom) {
+
+    if (state.scene === 1) {
+            this.rockBottom = (this.screenHeight - (this.screenHeight / 10) - this.height);
+    } 
+    if (this.y > this.rockBottom) {
             this.y = this.rockBottom;
             this.gravitySpeed = 0;
-        };
+        }
     //this creates a new character image after X and Y have been updated
         let image = new Image();
         image.src = Marioone; 
