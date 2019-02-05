@@ -9,12 +9,18 @@ import SelectCharacter from './components/characterSelect';
 class App extends Component {
   render() {
     return (
+      
       <Router>
-        <div>
-          <Canvas />
-          <Route exact path="/characters" component={SelectCharacter} />
-        </div>
+        <>
+        <Route exact path="/" render={(props) => <Auth {...props} action="login"/>} />
+        <Route exact path="/signup" render={(props) => <Auth {...props} action="signup" />} />
+        <Route exact path="/login" render={(props) => <Auth {...props} action="login" />} />
+        <Route exact path="/game" Component={Game} />
+        </>
       </Router>
+    
+      
+
     );
   }
 }
