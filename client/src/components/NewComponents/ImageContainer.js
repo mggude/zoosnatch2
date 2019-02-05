@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ImageSquare from "./ImageSquare";
 import characterObject from "../../characters.json";
 
-class ImageContainer  extends Component {
+class ImageContainer extends Component {
     
     state = {
         currentCharacter : this.props.currentCharacter,

@@ -72,6 +72,8 @@
             }
         ]
     },
+
+
     
 
     {
@@ -145,6 +147,16 @@
     
             }
         ]
+    },
+
+
+
+    {
+        "name": "Snow Monkey",
+        "active": false,
+        "staticImg": "images/characters/static/static_monkey***PLACEHOLDER.png",
+        "cagedImg": "images/characters/caged/caged_monkey***PLACEHOLDER*******.png"
+        
     }
     
 ]
