@@ -1,25 +1,14 @@
 import React, { Component } from "react";
-import "../bandersnatch/bandersnatch.css";
-import { Col, Row, Container } from "../../components/grid/index";
-import API from "../../utils/API";
-import App from "../../App";
+import "../App.css";
+// import { Col, Row, Container } from "../../components/grid/index";
+// import API from "../../utils/API";
+// import App from "../../App";
 import characters from "../characters.json";
 import { HeaderH2, ImageContainer, ImageSquare, ImageText, ProgressBar, Timer } from "./NewComponents/AllComponents";
 
 
-class Snatch extends Component {
+const Snatch = (props) => {
 
-    state ={
-        unlockedCharacters : this.props.unlockedCharacters,
-        currentCharacter : this.props.currentCharacter,
-        sceneLocation : this.props.sceneLocation,
-        points : this.props.points,
-    }
-    componentDidMount() {
-
-    }
-
-    render() {
         return (
             <>
                 <title>Decision Time</title>
@@ -29,13 +18,17 @@ class Snatch extends Component {
 
                         <div className="row">
                             <ImageContainer
-                                sceneLocation = {this.state.sceneLocation}
-                                currentCharacter = {this.state.currentCharacter}
+                                sceneLocation = {props.sceneLocation}
+                                currentCharacter = {props.currentCharacter}
+                                choiceOneAlt = {props.choiceOneAlt}
+                                imageOne = {props.imageOne}
+                                choiceTwoAlt = {props.choiceTwoAlt}
+                                imageTwo = {props.imageTwo}
                             />
-                            <ProgressBar />
+                            {/* <ProgressBar /> */}
                             <ImageText 
-                                sceneLocation = {this.state.sceneLocation}
-                                currentCharacter = {this.state.currentCharacter}
+                                sceneLocation = {props.sceneLocation}
+                                currentCharacter = {props.currentCharacter}
                             />
                         </div>
                     
@@ -43,6 +36,7 @@ class Snatch extends Component {
                 </div>
             </>
         );
-    }
 
 }
+
+export default Snatch;

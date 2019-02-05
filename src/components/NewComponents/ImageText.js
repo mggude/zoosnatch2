@@ -7,8 +7,8 @@ class ImageText extends Component {
     state = {
         currentCharacter: this.props.currentCharacter,
         currentLocation: this.props.sceneLocation,
-        imageTextOne: characterObject[this.props.currentCharacter].scene[this.props.sceneLocation].choiceOne,
-        imageTextTwo: characterObject[this.props.currentCharacter].scene[this.props.sceneLocation].choiceTwo
+        imageTextOne: characterObject[this.state.currentCharacter].scene[this.state.sceneLocation].choiceOne,
+        imageTextTwo: characterObject[this.state.currentCharacter].scene[this.state.sceneLocation].choiceTwo
     }
 
     render() {
