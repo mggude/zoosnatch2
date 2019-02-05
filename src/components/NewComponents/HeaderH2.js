@@ -10,6 +10,6 @@ const HeaderH2 = (props) => {
             </div>
         </div>
     )
-}
+};
 
 export default HeaderH2;
