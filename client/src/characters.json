@@ -91,7 +91,7 @@
                 "choiceOne": "Run like HELL!",
                 "choiceTwo": "Get your munch on!",
                 "choiceOneImg": "images/snatch_images/scary_snatch.png",
-                "choiceTwoImg": "",
+                "choiceTwoImg": "images/snatch_images/zookeeper_snatch.png",
                 "incorrectResult": 0,
                 "correctAnswer": "choiceOne",
                 "correct": true
