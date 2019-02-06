@@ -7,6 +7,7 @@ import Health from './Health';
 import Spider from './Spider';
 import Cliff from './Cliff';
 import Monkey from './Monkey';
+import Poop from './Poop';
 
 
 class Canvas extends Component {
@@ -23,20 +24,23 @@ class Canvas extends Component {
             keys: {
                 left: false,
                 right: false,
-                up: false
+                up: false,
+                space: false,
             },
             health: 0,
+            monkeyHealth: 0,
             touching: false,
             currentScene: 0,
             //==== SCENE WILL EQUAL DATA.SCENE=====
-            scene: 1,
+            scene: 0,
             falling: false
         }
         this.background = [];
         this.characters = [];
         this.objects = [];
+        this.monkey = [];
         this.health = [];
-
+        this.poop = [];
     }
     //=========================
     //handles key press events
@@ -45,6 +49,12 @@ class Canvas extends Component {
         if (e.keyCode === 37) keys.left = value;
         if (e.keyCode === 39) keys.right = value;
         if (e.keyCode === 38) keys.up = value;
+        if (this.state.scene === 2 && e.keyCode === 32 && !this.state.keys.space) {
+            this.generatePoop();
+            keys.space = value;
+        } else {
+            keys.space = value;
+        }
         this.setState({
             keys: keys
         });
@@ -83,6 +93,8 @@ class Canvas extends Component {
         // console.log("props: ", this.props)
         window.addEventListener('keydown', this.handleKeys.bind(this, true));
         window.addEventListener('keyup', this.handleKeys.bind(this, false));
+      
+
         window.addEventListener('touchstart', this.handleTouch.bind(this, true));
         window.addEventListener('touchend', this.handleTouch.bind(this, false));
         window.addEventListener('resize', this.handleResize());
@@ -102,10 +114,13 @@ class Canvas extends Component {
         context.globalAlpha = 0.001;
         // This calls a function that loops through an array updating each object
         this.updateObjects(this.background, 'background');
-        this.updateObjects(this.characters, 'characters')
-        this.updateObjects(this.objects, 'object')
+        this.updateObjects(this.characters, 'characters');
+        this.updateObjects(this.objects, 'object');
+        if (this.state.scene === 2) {
+            this.updateObjects(this.monkey, 'object');
+        }
         this.updateObjects(this.health, 'health');
-        this.checkObjectsTouching(this.characters[0]);
+        this.checkObjectsTouching(this.characters[0], this.monkey[0]);
         context.restore();
         // Next frame
         requestAnimationFrame(() => { this.update() });
@@ -124,7 +139,13 @@ class Canvas extends Component {
         let health = new Health(this.state);
         this.health.push(health);
         //======================================
-        this.generateObjects(3);
+        if (this.state.scene === 0) {
+            this.generateObjects(6);
+        } else if (this.state.scene === 1) {
+            this.generateObjects(5);
+        } else if (this.state.scene === 2) {
+            this.generateObjects(1);
+        }
     }
 
     generateObjects(howMany) {
@@ -133,15 +154,20 @@ class Canvas extends Component {
                 let object = new Spider(this.state, i);
                 this.objects.push(object);
             } else if (this.state.scene === 1) {
-                console.log('route hit')
                 let object = new Cliff(this.state, i);
                 this.objects.push(object);
             } else if (this.state.scene === 2) {
                 let object = new Monkey(this.state, i);
-                this.objects.push(object);
+                this.monkey.push(object);
             }
         }
     }
+
+    generatePoop() {
+            let object = new Poop(this.state, this.characters[0]);
+            this.objects.push(object);
+    }
+
     //updates objects based on movement
     updateObjects(items, group) {
         let index = 0;
@@ -155,7 +181,7 @@ class Canvas extends Component {
         }
     }
     //checks if character is touching obstacles
-    checkObjectsTouching(characters) {
+    checkObjectsTouching(characters, monkey) {
         for (let i = 0; i < this.objects.length; i++) {
             // console.log("spiders: ", this.spiders[i]);
             let object = this.objects[i];
@@ -169,39 +195,42 @@ class Canvas extends Component {
             } else if (this.state.scene === 1) {
                 if (characters.x > (object.x + object.width) && characters.x < (this.objects[(i + 1)].x)) {
                     console.log("falling");
-                    this.state.falling = true
-                } else {
-                    // this.state.falling = false
+                    this.setState({ falling: true });
                 }
             } else if (this.state.scene === 2) {
-                if (object.x < (characters.x + characters.width) && object.x) {
+                if (monkey.x < (characters.x + characters.width)) {
                     this.setState({
                         health: this.state.health + .001,
                         touching: true
                     });
+                } else if (object.x > monkey.x && object.x < (monkey.x + monkey.width)) {
+                    this.setState({ monkeyHealth: this.state.monkeyHealth + .05 });
+                    console.log("Monkey health", this.state.monkeyHealth)
+                } else if (object.x > this.state.screen.width) {
+                    this.objects.shift();
                 } else {
                     this.setState({ touching: false });
                 }
-            } else {
-                console.log("else")
             }
         }
     }
 
     checkSceneComplete(characters) {
         if (characters.x > this.state.screen.width) {
-            this.setState({ currentScene: (this.state.scene += 1) });
-            window.location.href = "www.google.com";
+            this.setState({ currentScene: +1 });
+            // window.location.href = "/game";
         }
     }
 
     render() {
         return (
             <div>
+                <div className="container">
                 <canvas ref="canvas"
                     width={this.state.screen.width}
                     height={this.state.screen.height}
                 />
+                </div>
             </div>
         )
     }
