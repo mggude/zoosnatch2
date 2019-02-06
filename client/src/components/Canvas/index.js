@@ -29,7 +29,8 @@ class Canvas extends Component {
             touching: false,
             currentScene: 0,
             //==== SCENE WILL EQUAL DATA.SCENE=====
-            scene: 2
+            scene: 1,
+            falling: false
         }
         this.background = [];
         this.characters = [];
@@ -166,7 +167,12 @@ class Canvas extends Component {
                     });
                 }
             } else if (this.state.scene === 1) {
-
+                if (characters.x > (object.x + object.width) && characters.x < (this.objects[(i + 1)].x)) {
+                    console.log("falling");
+                    this.state.falling = true
+                } else {
+                    // this.state.falling = false
+                }
             } else if (this.state.scene === 2) {
                 if (object.x < (characters.x + characters.width) && object.x) {
                     this.setState({
@@ -175,12 +181,10 @@ class Canvas extends Component {
                     });
                 } else {
                     this.setState({ touching: false });
-
                 }
             } else {
                 console.log("else")
             }
-
         }
     }
 

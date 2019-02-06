@@ -1,4 +1,4 @@
-import Giraffeherd from "../../images/Canvas/giraffeHerd.jpg";
+import Giraffeherd from "../../images/Canvas/bearForest.jpg";
 
 export default class Health {
     constructor(attr) {
