@@ -4,7 +4,7 @@ import ProgressBar from './components/NewComponents/ProgressBar';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Auth from "./pages/Auth";
 import Game from "./pages/Game"
-import './App.css';
+import "./App.css"
 // import SelectCharacter from './components/characterSelect';
 
 

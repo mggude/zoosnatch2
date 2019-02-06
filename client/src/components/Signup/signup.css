@@ -1,0 +1,22 @@
+* {
+    font-family: 'Staatliches', cursive;
+}
+
+body {
+    text-align: center;
+    background: #000;
+    color: #fff;
+}
+
+h1 {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 15vw;
+    color: aqua;
+}
+
+h3, h5 {
+    font-family: 'Staatliches', cursive;
+}
+
+
+
