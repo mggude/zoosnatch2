@@ -75,9 +75,7 @@ class GameLogic extends Component {
           default:
             return 0;
         }
-      };
-
-
+    };
     // ========================Pass Photos to Bandersnatch Page ============================== //
     updateImage = () => {
         switch (this.state.currentCharacter) {
@@ -125,51 +123,55 @@ class GameLogic extends Component {
         return '{imageOne}';
         return '{imageTwo}';
     }
+    // ========================Function To Pass To Bandersnatch Component ============================== //
+    
     // ========================Function To Check Answer From Bandersnatch ============================== //
-    // checkBanderAnswer = () => {
-    //     var userInput;
-    //     var correctAnswerText;
-    //     var wrongAnswerText;
-    //     var shortToScene = characters[this.state.currentCharacter].scene[this.state.sceneLocation]
+    checkBanderAnswer = () => {
+        var userInput;
+        var correctAnswerText;
+        var wrongAnswerText;
+        var shortToScene = characters[this.state.currentCharacter].scene[this.state.sceneLocation]
     
-    //     if (userInput === shortToScene.correctAnswer) {
-    //         console.log("Correct answer!");
-    //         console.log("You chose: " + userInput);
-    //         correctAnswerText = shortToScene.answerTrue
-    //         // update points function
-    //         if (this.state.sceneLocation >= 3) {
-    //             // set showSnatch to false
-    //             // set showMessage to true
-    //                 // pass in new props to render either answerTrue
-    //                 // pass in new props to render button button text to "Continue"
-    //                 // pass in new props to render button to change showMessage to false and showCanvas to true
+        if (userInput === shortToScene.correctAnswer) {
+            console.log("Correct answer!");
+            console.log("You chose: " + userInput);
+            correctAnswerText = shortToScene.answerTrue
+            // update points function
+            if (this.state.sceneLocation >= 3) {
+                // set showSnatch to false
+                // set showMessage to true
+                    // pass in new props to render answerTrue
+                    // pass in new props to render button button text to "Go to Leaderboards"
+                    // pass in new props to render button to upload state to database, send to leaderboard HTML page
                 
-    //         } else if (window.localStorage.getItem("currentSceneId") < 3) {
-    //             document.getElementById("continue").style.visibility = "visible";
-    //             document.getElementById("leaderboard").style.visibility = "hidden";
-    //             document.getElementById("makedecision").style.visibility = "hidden";
-    //         }
+            } else if (window.localStorage.getItem("currentSceneId") < 3) {
+                // set showSnatch to false
+                // set showMessage to true
+                    // pass in new props to render answerTrue
+                    // pass in new props to render button button text to "Continue"
+                    // pass in new props to render button to set State showMessage to false, showCanvas to true   
+            }
     
-    //     } else if (userInput !== characterArray[currentCharacterValue].scene[currentScene].correctAnswer) {
-    //         console.log("WRONG answer!");
-    //         console.log("You chose: " + userChoiceText);
-    //         wrongAnswerText = characterArray[currentCharacterValue].scene[currentScene].answerFalse
-    //         clearInterval(intervalId);
-    //         document.getElementById("leaderboard").style.visibility = "visible";
-    //         document.getElementById("continue").style.visibility = "hidden";
-    //         document.getElementById("makedecision").style.visibility = "hidden";
-    //     }
-    // }   
-        
-
-
+        } else if (userInput !== shortToScene.correctAnswer) {
+            console.log("WRONG answer!");
+            console.log("You chose: " + userInput);
+            wrongAnswerText = shortToScene.answerFalse
+                // set showSnatch to false
+                // set showMessage to true
+                    // pass in new props to render answerFalse
+                    // pass in new props to render button button text to "Go to Leaderboards"
+                    // pass in new props to render button to upload state to database, send to leaderboard HTML page
+        }
+    }   
     // ========================Function To Update State From Canvas ============================== //
-    canvasComplete = () => {
+    canvasComplete = (canvasPoints) => {
         // line 220 from canvas, function checksceneLocationComplete
             console.log("passed canvasComplete function works!");
+            this.setState({ points: this.state.points + canvasPoints});
+            this.setState({ sceneLocation: this.state.sceneLocation++ });
     }
 
-
+    // ========================Functionality of GameLogic Component ============================== //
     componentDidMount() {
         // this.startGame();
         this.updateImage();
