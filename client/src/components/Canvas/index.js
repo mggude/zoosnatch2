@@ -30,10 +30,11 @@ class Canvas extends Component {
             health: 0,
             monkeyHealth: 0,
             touching: false,
-            currentScene: 0,
             //==== SCENE WILL EQUAL DATA.SCENE=====
-            scene: 0,
-            falling: false
+            scene: data.sceneLocation,
+            falling: false,
+            data: data,
+            points: data.points
         }
         this.background = [];
         this.characters = [];
@@ -107,6 +108,8 @@ class Canvas extends Component {
 
     //update the canvas
     update() {
+
+        this.state.points = (Math.floor((1 - this.state.health) * 1000));
         // console.log("update called")
         const context = this.state.context;
         context.save();
@@ -217,8 +220,7 @@ class Canvas extends Component {
 
     checkSceneComplete(characters) {
         if (characters.x > this.state.screen.width) {
-            this.setState({ currentScene: +1 });
-            // window.location.href = "/game";
+            this.state.data.canvasComplete(this.state.points);
         }
     }
 
