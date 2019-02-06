@@ -6,6 +6,7 @@ import Auth from "./pages/Auth";
 import Game from "./pages/Game"
 import "./App.css"
 // import SelectCharacter from './components/characterSelect';
+import Leaderboard from './pages/Leaderboard/index';
 
 
 class App extends Component {
@@ -20,6 +21,8 @@ class App extends Component {
         <Route exact path="/login" render={(props) => <Auth {...props} action="login" />} />
         <Route exact path="/game" component={Game} />
         <Route exact path="/canvas" component={Canvas} />
+        <Route exact path="/leaderboard" component={Leaderboard} />
+
         </>
       </Router>
     

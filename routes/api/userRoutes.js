@@ -82,4 +82,14 @@ router.get("/admin", authMiddleware.isAdmin, function(req, res, next) {
   });
 });
 
+// route to get the score from the db
+router.get('/scores', function(req, res) {
+  db.User.find().then(data => {
+    console.log(data);
+    res.json(data);
+  }).catch(err => {
+    console.log(err);
+  })
+})
+
 module.exports = router;
