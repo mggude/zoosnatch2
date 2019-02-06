@@ -7,7 +7,7 @@ import { HeaderH2, CharImageContainer, CharImageSquare, ImageSquare, ImageText }
 
   ///////we will need to put a function for an onClick
 
-
+const SelectCharacter = props => {
   return (
     <>
       <title>Choose a Character</title>
@@ -27,7 +27,6 @@ import { HeaderH2, CharImageContainer, CharImageSquare, ImageSquare, ImageText }
       </div>
     </>
   );
-
-
+}
 
 export default SelectCharacter;

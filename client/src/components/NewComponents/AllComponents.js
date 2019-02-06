@@ -5,7 +5,6 @@ import ImageContainer from "./ImageContainer";
 import ImageSquare from "./ImageSquare";
 import {ImageOneText, ImageTwoText} from "./ImageText";
 import ProgressBar from "./ProgressBar";
-import Timer from "./Timer";
 import CharImageContainer from "./CharImageContainer";
 import CharImageSquare from "./CharImageSquare";
 
@@ -17,7 +16,6 @@ export {
     ImageOneText,
     ImageTwoText,
     ProgressBar,
-    Timer,
     CharImageSquare,
     CharImageContainer
 }
