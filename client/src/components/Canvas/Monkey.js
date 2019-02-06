@@ -1,4 +1,4 @@
-import Monkey from '../../images/Canvas/snowMonkey.png';
+import Monkey from '../../images/Canvas/monkeyResting.png';
 import MonkeyAttack from '../../images/Canvas/monkeyAttack.png';
 
 export default class Character {
@@ -15,17 +15,25 @@ export default class Character {
         this.gravity = 1;
         this.gravitySpeed = 0;
         this.rockBottom = this.screenHeight - this.height;
-        this.currentImage = 0;
+        this.fightInitiated = true;
+        this.jumping = false;
+        this.jumpOne = false;
+        this.jumpTwo = false;
+        this.jumpThree= false;
+        this.frameCount = 0;
         // this.imageArray = [Mariozero, Marioone, Mariotwo, Mariothree];
     }
 
-    render(state) {     
-    //updates locations based on keys being pressed  
+
+
+    render(state) {
+        this.frameCount ++;
+        //updates locations based on keys being pressed  
         if (state.keys.left === true) {
-            this.speedX = 2;
+            this.speedX = 6;
             this.speedY = -5;
         } else if (state.keys.right === true) {
-            this.speedX = -2;
+            this.speedX = -6;
             this.speedY = -5;
         } else {
             this.speedX = 0
@@ -33,49 +41,62 @@ export default class Character {
         if (state.keys.up === true) {
             this.speedY = -15;
         };
-
-
-        if (state.scene === 1) {
-            if (state.keys.up === true) {
+//=======^^^^key events^^^^^==========================
+        //======Monkey Actions===========
+        if (this.x < ((this.screenWidth) - (this.screenWidth / 3))) {
+            this.fightInitiated = false;
+        } else {
+            this.fightInitiated = true;
+        }
+        if (!this.fightInitiated) {
+            if (!this.jumpOne && !this.jumping  && this.frameCount > 40) {
                 this.speedY = -30;
+                this.jumping = true;
+                this.jumpOne = true;
+                this.jumpTwo = false;
+            } else if (!this.jumpTwo && !this.jumping  && this.frameCount > 55) {
+                this.speedY = -40;
+                this.jumping = true;
+                this.jumpTwo = true;
+                this.jumpThree = false;
+            } else if (!this.jumpThree && !this.jumping && this.frameCount > 70) {
+                this.speedY = -60;
+                this.jumping = true;
+                this.jumpThree = true;
+                this.jumpOne = false;
+                this.frameCount = 0;
             }
-            if (state.keys.right === true && state.keys.up === true) {
-                this.speedX = 10;
-            }
-        };
 
+        }
 
-
-    //updates location based on speed and gravity
+        //updates location based on speed and gravity
         this.x += this.speedX;
         this.gravitySpeed += this.gravity;
         this.y += this.speedY += this.gravitySpeed;
         const context = state.context;
-    //this keeps the character on the ground
 
-    if (state.scene === 1) {
-            this.rockBottom = (this.screenHeight - (this.screenHeight / 10) - this.height);
-    } 
-    if (this.y > this.rockBottom) {
+        //this keeps the character on the ground
+        if (this.y > this.rockBottom) {
+            this.jumping = false;
             this.y = this.rockBottom;
             this.gravitySpeed = 0;
-        }
+        } 
 
-        if (state.touching === true) {
+        if (state.touching === true || this.jumping) {
             let image = new Image();
-            image.src = MonkeyAttack; 
+            image.src = MonkeyAttack;
             image.onload = () => {
                 context.drawImage(image, this.x, this.y, this.width, this.height);
             };
         } else {
             let image = new Image();
-        image.src = Monkey; 
-        image.onload = () => {
-            context.drawImage(image, this.x, this.y, this.width, this.height);
-        };
+            image.src = Monkey;
+            image.onload = () => {
+                context.drawImage(image, this.x, this.y, this.width, this.height);
+            };
         }
-    //this creates a new character image after X and Y have been updated
-        
+        //this creates a new character image after X and Y have been updated
+
         context.restore();
     }
 }
