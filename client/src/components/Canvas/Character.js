@@ -1,10 +1,5 @@
-import Marioone from '../../images/characters/animated/animated_giraffe.png';
-import Sprite from '../../images/characters/sprites/giraffeResting.png';
 import BearZero from '../../images/characters/animated/bear_walk0.png';
 import BearOne from '../../images/characters/animated/bear_walk1.png';
-import BearTwo from '../../images/characters/animated/bear_walk2.png';
-
-
 
 export default class Character {
     constructor(attr) {
