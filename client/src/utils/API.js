@@ -26,5 +26,9 @@ export default {
     return axios.get("/api/users/logout")
   },
 
+  getScores: function() {
+    return axios.get("/api/users/scores")
+  }
+
 
 };

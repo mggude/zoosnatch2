@@ -25,6 +25,12 @@ const usersSchema = new Schema({
     required: true,
     default: false
 },
+
+score: {
+    type: Number,
+    default: 0
+},
+
   createdAt: {
       type: Date,
       default: Date.now()
