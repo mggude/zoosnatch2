@@ -6,7 +6,7 @@ export default class Cliff {
         this.width = (this.screenWidth / 3);
         this.height = (this.screenHeight / 10);
 
-        this.cliffSpacing = (this.screenWidth / 8);
+        this.cliffSpacing = (this.screenWidth / 4);
 
         this.x = ((this.width + this.cliffSpacing) * i);
         this.y = 0;

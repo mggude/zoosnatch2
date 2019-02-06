@@ -8,7 +8,7 @@ export default class Character {
         this.screenWidth = attr.screen.width;
         this.width = (this.screenHeight / 4);
         this.height = (this.screenWidth / 4);
-        this.x = this.screenWidth - this.width;
+        this.x = this.screenWidth + this.width;
         this.y = this.screenHeight - this.height;
         this.speedX = 0;
         this.speedY = 0;
@@ -22,10 +22,10 @@ export default class Character {
     render(state) {     
     //updates locations based on keys being pressed  
         if (state.keys.left === true) {
-            this.speedX = 2;
+            this.speedX = 6;
             this.speedY = -5;
         } else if (state.keys.right === true) {
-            this.speedX = -2;
+            this.speedX = -6;
             this.speedY = -5;
         } else {
             this.speedX = 0
