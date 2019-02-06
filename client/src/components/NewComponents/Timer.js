@@ -1,6 +1,6 @@
 // import React from "react";
 
-// class Timer extends Component {
+class Timer extends React.Component {
 
 //     state = {
 //         timer: 0

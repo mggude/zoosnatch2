@@ -27,7 +27,7 @@ import { HeaderH2, CharImageContainer, CharImageSquare, ImageSquare, ImageText }
       </div>
     </>
   );
-}
+
 
 
 export default SelectCharacter;
