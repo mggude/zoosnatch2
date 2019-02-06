@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Canvas from './components/Canvas/';
-import ProgressBar from './components/NewComponents/ProgressBar';
+import Bandersnatch from './components/Bandersnatch';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Auth from "./pages/Auth";
 import Game from "./pages/Game"
@@ -22,7 +22,8 @@ class App extends Component {
         <Route exact path="/game" component={Game} />
         <Route exact path="/canvas" component={Canvas} />
         <Route exact path="/leaderboard" component={Leaderboard} />
-
+        
+        {/* <Route exact path="/bandersnatch" component={Bandersnatch} /> */}
         </>
       </Router>
     

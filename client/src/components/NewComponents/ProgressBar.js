@@ -21,7 +21,7 @@ class ProgressBar extends Component {
     render() {
         return (
             <div>
-                <h1>Time Remaining</h1>
+                {/* <h1>Time Remaining</h1> */}
                 <div className="progress-containerTwo">
                     <div className="progress-barTwo" id="myBarTwo" style={{ width: `${this.state.remainingTime}%` }}></div>
                 </div>

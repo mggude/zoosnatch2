@@ -1,38 +1,43 @@
 import React, { Component } from "react";
 import "../App.css";
-// import { Col, Row, Container } from "../../components/grid/index";
+// import { Container, Row, Col, Button } from "reactstrap";
 // import API from "../../utils/API";
 // import App from "../../App";
 import characters from "../characters.json";
-import { HeaderH2, ImageContainer, ImageSquare, ImageText, ProgressBar, Timer } from "./NewComponents/AllComponents";
+import GameLogic from "./GameLogic";
+import { HeaderH2, ImageContainer, ImageSquare, ProgressBar, Timer } from "./NewComponents/AllComponents";
+// import {ImageOneText, ImageTwoText} from "./ImageText";
 
 const Snatch = (props) => {
-    console.log(props);
+    console.log(`snatch props: ${props.choiceOneImg}`);
     return (
         <>
             <title>Decision Time</title>
-            <div className="w3-container">
-                <div className="container">
-                    <HeaderH2 text="What Would You Like To Do?" />
 
-                    <div className="row">
-                        <ImageContainer
-                            sceneLocation={props.sceneLocation}
-                            currentCharacter={props.currentCharacter}
-                            choiceOneAlt={props.choiceOneAlt}
-                            choiceOneImg={props.choiceOneImg}
-                            choiceTwoAlt={props.choiceTwoAlt}
-                            choiceTwoImg={props.choiceTwoImg}
-                        />
-                        {/* <ProgressBar /> */}
-                        {/* <ImageText 
-                                sceneLocation = {props.sceneLocation}
-                                currentCharacter = {props.currentCharacter}
-                            /> */}
-                    </div>
 
-                </div>
-            </div>
+            <HeaderH2 text="What Would You Like To Do?" />
+
+            <ImageContainer
+                sceneLocation={props.sceneLocation}
+                currentCharacter={props.currentCharacter}
+                choiceOneAlt={props.choiceOneAlt}
+                choiceOneImg={props.choiceOneImg}
+                choiceTwoAlt={props.choiceTwoAlt}
+                choiceTwoImg={props.choiceTwoImg}
+            />
+               {/* <ImageText
+                choiceOneText={props.choiceOneText}
+                choiceTwoText={props.choiceTwoText}
+            /> */}
+            
+            <ProgressBar />
+
+
+         
+
+
+
+
         </>
     );
 

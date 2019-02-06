@@ -40,8 +40,8 @@ class GameLogic extends Component {
         points: 0,
         showCaracterSelect: false,
         showMessage: false,
-        showSnatch: false,
-        showCanvas: true,
+        showSnatch: true,
+        showCanvas: false,
         giraffeSelectImg: null,
         bearSelectImg: null,
         monkeySelectImg: null,
@@ -52,30 +52,30 @@ class GameLogic extends Component {
 
 
     // ======================== Display Current Page Component ============================== //
-  
+
 
     // ================= Pass Unlocked Character Imgs to CharacterSelect Page =============== //
     SelectCharacter = (props) => {
         switch (this.state.unlockedCharacters) {
-          case 0:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} });
-            this.setState ({bearSelectImg : {CagedBear} });
-            this.setState ({monkeySelectImg : {CagedMonkey} });
-            break;
-          case 1:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} });
-            this.setState ({bearSelectImg : {StaticBear} });
-            this.setState ({monkeySelectImg : {CagedMonkey} });
-          break;
-          case 2:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} });
-            this.setState ({bearSelectImg : {StaticBear} });
-            this.setState ({monkeySelectImg : {StaticMonkey} });
-          break;
-          default:
-            return 0;
+            case 0:
+                this.setState({ giraffeSelectImg: { StaticGiraffe } });
+                this.setState({ bearSelectImg: { CagedBear } });
+                this.setState({ monkeySelectImg: { CagedMonkey } });
+                break;
+            case 1:
+                this.setState({ giraffeSelectImg: { StaticGiraffe } });
+                this.setState({ bearSelectImg: { StaticBear } });
+                this.setState({ monkeySelectImg: { CagedMonkey } });
+                break;
+            case 2:
+                this.setState({ giraffeSelectImg: { StaticGiraffe } });
+                this.setState({ bearSelectImg: { StaticBear } });
+                this.setState({ monkeySelectImg: { StaticMonkey } });
+                break;
+            default:
+                return 0;
         }
-      };
+    };
 
 
     // ========================Pass Photos to Bandersnatch Page ============================== //
@@ -122,8 +122,8 @@ class GameLogic extends Component {
                 }
                 break;
         }
-        return '{imageOne}';
-        return '{imageTwo}';
+        // return '{imageOne}';
+        // return '{imageTwo}';
     }
     // ========================Function To Check Answer From Bandersnatch ============================== //
     // checkBanderAnswer = () => {
@@ -131,7 +131,7 @@ class GameLogic extends Component {
     //     var correctAnswerText;
     //     var wrongAnswerText;
     //     var shortToScene = characters[this.state.currentCharacter].scene[this.state.sceneLocation]
-    
+
     //     if (userInput === shortToScene.correctAnswer) {
     //         console.log("Correct answer!");
     //         console.log("You chose: " + userInput);
@@ -143,13 +143,13 @@ class GameLogic extends Component {
     //                 // pass in new props to render either answerTrue
     //                 // pass in new props to render button button text to "Continue"
     //                 // pass in new props to render button to change showMessage to false and showCanvas to true
-                
+
     //         } else if (window.localStorage.getItem("currentSceneId") < 3) {
     //             document.getElementById("continue").style.visibility = "visible";
     //             document.getElementById("leaderboard").style.visibility = "hidden";
     //             document.getElementById("makedecision").style.visibility = "hidden";
     //         }
-    
+
     //     } else if (userInput !== characterArray[currentCharacterValue].scene[currentScene].correctAnswer) {
     //         console.log("WRONG answer!");
     //         console.log("You chose: " + userChoiceText);
@@ -160,13 +160,13 @@ class GameLogic extends Component {
     //         document.getElementById("makedecision").style.visibility = "hidden";
     //     }
     // }   
-        
+
 
 
     // ========================Function To Update State From Canvas ============================== //
     canvasComplete = () => {
         // line 220 from canvas, function checksceneLocationComplete
-            console.log("passed canvasComplete function works!");
+        console.log("passed canvasComplete function works!");
     }
 
 
@@ -179,8 +179,8 @@ class GameLogic extends Component {
     render() {
         if (this.state.showCaracterSelect) {
             return (
-                <CharacterSelect 
-                    unlockedCharacters = {this.state.unlockedCharacters}
+                <CharacterSelect
+                    unlockedCharacters={this.state.unlockedCharacters}
                 />
             )
         } else if (this.state.showMessage) {
@@ -201,8 +201,8 @@ class GameLogic extends Component {
             );
         } else if (this.state.showCanvas) {
             return (
-                <Canvas 
-                    canvasComplete = {this.canvasComplete.bind(this)}
+                <Canvas
+                    canvasComplete={this.canvasComplete.bind(this)}
                     currentCharacter={this.state.currentCharacter}
                     sceneLocation={this.state.sceneLocation}
                     points={this.state.points}
