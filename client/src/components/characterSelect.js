@@ -32,7 +32,6 @@ const SelectCharacter = (props) => {
   ///////we will need to put a function for an onClick
 
 
-  render() {
     return (
       <>
         <title>Choose a Character</title>
@@ -53,6 +52,6 @@ const SelectCharacter = (props) => {
       </>
     );
   }
-};
+
 
 export default SelectCharacter;

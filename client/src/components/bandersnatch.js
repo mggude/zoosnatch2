@@ -1,25 +1,13 @@
 import React, { Component } from "react";
-import "../bandersnatch/bandersnatch.css";
-import { Col, Row, Container } from "../../components/grid/index";
-import API from "../../utils/API";
-import App from "../../App";
+import "../App.css";
+// import { Col, Row, Container } from "../../components/grid/index";
+// import API from "../../utils/API";
+// import App from "../../App";
 import characters from "../characters.json";
 import { HeaderH2, ImageContainer, ImageSquare, ImageText, ProgressBar, Timer } from "./NewComponents/AllComponents";
 
-
-class Snatch extends Component {
-
-    state ={
-        unlockedCharacters : this.props.unlockedCharacters,
-        currentCharacter : this.props.currentCharacter,
-        sceneLocation : this.props.sceneLocation,
-        points : this.props.points,
-    }
-    componentDidMount() {
-
-    }
-
-    render() {
+const Snatch = (props) => {
+console.log(props);
         return (
             <>
                 <title>Decision Time</title>
@@ -29,16 +17,25 @@ class Snatch extends Component {
 
                         <div className="row">
                             <ImageContainer
-                                sceneLocation = {this.state.sceneLocation}
-                                currentCharacter = {this.state.currentCharacter}
+                                sceneLocation = {props.sceneLocation}
+                                currentCharacter = {props.currentCharacter}
+                                choiceOneAlt = {props.choiceOneAlt}
+                                choiceOneImg = {props.choiceOneImg}
+                                choiceTwoAlt = {props.choiceTwoAlt}
+                                choiceTwoImg = {props.choiceTwoImg}
                             />
-                            <ProgressBar />
+                            {/* <ProgressBar /> */}
+                            {/* <ImageText 
+                                sceneLocation = {props.sceneLocation}
+                                currentCharacter = {props.currentCharacter}
+                            /> */}
                         </div>
                     
                     </div>
                 </div>
             </>
         );
-    }
 
 }
+
+export default Snatch;
