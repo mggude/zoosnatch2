@@ -18,7 +18,7 @@ class App extends Component {
         <Route exact path="/" render={(props) => <Auth {...props} action="login"/>} />
         <Route exact path="/signup" render={(props) => <Auth {...props} action="signup" />} />
         <Route exact path="/login" render={(props) => <Auth {...props} action="login" />} />
-        {/* <Route exact path="/game" component={Game} /> */}
+        <Route exact path="/game" component={Game} />
         <Route exact path="/canvas" component={Canvas} />
         </>
       </Router>
