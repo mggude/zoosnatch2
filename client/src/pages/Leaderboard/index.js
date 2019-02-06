@@ -14,7 +14,8 @@ import API from "../../utils/API";
 
 class Leaderboard extends React.Component {
     state = {
-        scoreData: []
+        scoreData: [],
+        lastScore: {}
     }
 
     componentDidMount() {
@@ -25,12 +26,16 @@ class Leaderboard extends React.Component {
     getUserScore = () => {
         API.getScores()
             .then(scoreData => {
-                console.log(scoreData)
-                this.setState({ scoreData: scoreData.data })
+                console.log(scoreData.data[scoreData.data.length -1]);
+                let lastScore = scoreData.data[scoreData.data.length -1]
+                this.setState({ 
+                    scoreData: scoreData.data,
+                    lastScore: lastScore
+                })
                 console.log(this.state.scoreData);
             })
             .catch(err => console.log(err));
-            // console.log(scoreData);
+        // console.log(scoreData);
     }
 
 
@@ -40,28 +45,19 @@ class Leaderboard extends React.Component {
                 <Row>
                     <Col size="md-12">
                         <h1 className="text-center">ZooSnatch</h1>
-                        {this.state.scoreData.map(score => (
-                    <p>{score.username}: {score.score}</p>
-                ))}
-                    </Col>
-                    <Col size="md-4">
-                        <form className="create-form">
-                            <div className="form-group">
-                                <label htmlFor="userInitials">
-                                    <div className="userScore"></div>
-                                    <h2 className="leaderboard text-center">Enter Your Initials</h2>
-                                </label>
-                                <input type="text" className="form-control" id="userInitials" aria-describedby="emailHelp" placeholder="Enter initials"></input>
-                            </div>
-                            <button id="submitButton" type="submit" className="btn btn-primary">Submit</button>
-                        </form>
                     </Col>
                     <Col size="md-4">
                         <h2 id="scoreBanner" className="leaderboard">Your Score:</h2>
-                        <h2><span id="individualScore"></span></h2>
+                        <h2><span id="individualScore">
+                       <p> {this.state.lastScore.score}</p>
+            
+                        </span></h2>
                     </Col>
                     <Col size="md-4">
                         <h2 className="leaderboard">Leaderboard</h2>
+                        {this.state.scoreData.map(score => (
+                            <p key={score._id}>{score.username}: {score.score}</p>
+                        ))}
                     </Col>
                 </Row>
                 <footer className="fixed-bottom text-center">
@@ -75,3 +71,8 @@ class Leaderboard extends React.Component {
 }
 
 export default Leaderboard;
+
+
+// {this.state.scoreData.map(score => (
+//     <p>{score.username}: {score.score}</p>
+// ))}
