@@ -36,7 +36,7 @@ class GameLogic extends Component {
     state = {
         unlockedCharacters: 0,
         currentCharacter: 0,
-        sceneLocation: 0,
+        sceneLocation: 2,
         points: 0,
         showCaracterSelect: false,
         showMessage: false,
