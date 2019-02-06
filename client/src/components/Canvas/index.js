@@ -28,15 +28,17 @@ class Canvas extends Component {
                 space: false,
             },
             health: 0,
+            monkeyHealth: 0,
             touching: false,
             currentScene: 0,
             //==== SCENE WILL EQUAL DATA.SCENE=====
-            scene: 2,
+            scene: 0,
             falling: false
         }
         this.background = [];
         this.characters = [];
         this.objects = [];
+        this.monkey = [];
         this.health = [];
         this.poop = [];
     }
@@ -115,11 +117,10 @@ class Canvas extends Component {
         this.updateObjects(this.characters, 'characters');
         this.updateObjects(this.objects, 'object');
         if (this.state.scene === 2) {
-            this.updateObjects(this.poop, 'object');
-            console.log("poop update")
+            this.updateObjects(this.monkey, 'object');
         }
         this.updateObjects(this.health, 'health');
-        this.checkObjectsTouching(this.characters[0]);
+        this.checkObjectsTouching(this.characters[0], this.monkey[0]);
         context.restore();
         // Next frame
         requestAnimationFrame(() => { this.update() });
@@ -138,7 +139,13 @@ class Canvas extends Component {
         let health = new Health(this.state);
         this.health.push(health);
         //======================================
-        this.generateObjects(3);
+        if (this.state.scene === 0) {
+            this.generateObjects(6);
+        } else if (this.state.scene === 1) {
+            this.generateObjects(5);
+        } else if (this.state.scene === 2) {
+            this.generateObjects(1);
+        }
     }
 
     generateObjects(howMany) {
@@ -147,21 +154,18 @@ class Canvas extends Component {
                 let object = new Spider(this.state, i);
                 this.objects.push(object);
             } else if (this.state.scene === 1) {
-                console.log('route hit')
                 let object = new Cliff(this.state, i);
                 this.objects.push(object);
             } else if (this.state.scene === 2) {
                 let object = new Monkey(this.state, i);
-                this.objects.push(object);
+                this.monkey.push(object);
             }
         }
     }
 
     generatePoop() {
-        console.log("generate poop called")
             let object = new Poop(this.state, this.characters[0]);
-            this.poop.push(object);
-            console.log(this.poop)
+            this.objects.push(object);
     }
 
     //updates objects based on movement
@@ -177,7 +181,7 @@ class Canvas extends Component {
         }
     }
     //checks if character is touching obstacles
-    checkObjectsTouching(characters) {
+    checkObjectsTouching(characters, monkey) {
         for (let i = 0; i < this.objects.length; i++) {
             // console.log("spiders: ", this.spiders[i]);
             let object = this.objects[i];
@@ -192,20 +196,21 @@ class Canvas extends Component {
                 if (characters.x > (object.x + object.width) && characters.x < (this.objects[(i + 1)].x)) {
                     console.log("falling");
                     this.setState({ falling: true });
-                } else {
-                    // this.state.falling = false
                 }
             } else if (this.state.scene === 2) {
-                if (object.x < (characters.x + characters.width) && object.x) {
+                if (monkey.x < (characters.x + characters.width)) {
                     this.setState({
                         health: this.state.health + .001,
                         touching: true
                     });
+                } else if (object.x > monkey.x && object.x < (monkey.x + monkey.width)) {
+                    this.setState({ monkeyHealth: this.state.monkeyHealth + .05 });
+                    console.log("Monkey health", this.state.monkeyHealth)
+                } else if (object.x > this.state.screen.width) {
+                    this.objects.shift();
                 } else {
                     this.setState({ touching: false });
                 }
-            } else {
-                console.log("else")
             }
         }
     }

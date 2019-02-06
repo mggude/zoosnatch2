@@ -45,8 +45,10 @@ export default class Health {
         context.fillRect((this.screenWidth - (this.screenWidth/2)), 0, this.screenWidth/2, this.screenHeight/16);
 
         context.fillStyle = "red";
+        //bear health bar
         context.fillRect(0, 0, (this.screenWidth / 2) * state.health, this.screenHeight/16);
-        context.fillRect((this.screenWidth - (this.screenWidth/2)), 0, this.screenWidth/2, this.screenHeight/16);
+        //monkey health bar
+        context.fillRect(this.screenWidth - ((this.screenWidth / 2) * state.monkeyHealth), 0, this.screenWidth/2, this.screenHeight/16);
         context.restore();
     }
 }
