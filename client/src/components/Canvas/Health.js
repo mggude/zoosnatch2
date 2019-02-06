@@ -37,7 +37,16 @@ export default class Health {
         }
         context.globalAlpha = this.fadeIn;
         fillNow();
+
         context.globalAlpha = 1;
+
+        context.fillStyle = "green";
+        context.fillRect(0, 0, this.screenWidth/2, this.screenHeight/16);
+        context.fillRect((this.screenWidth - (this.screenWidth/2)), 0, this.screenWidth/2, this.screenHeight/16);
+
+        context.fillStyle = "red";
+        context.fillRect(0, 0, (this.screenWidth / 2) * state.health, this.screenHeight/16);
+        context.fillRect((this.screenWidth - (this.screenWidth/2)), 0, this.screenWidth/2, this.screenHeight/16);
         context.restore();
     }
 }
