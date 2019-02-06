@@ -31,8 +31,7 @@ class Canvas extends Component {
             monkeyHealth: 0,
             touching: false,
             //==== SCENE WILL EQUAL DATA.SCENE=====
-            // scene: data.sceneLocation,
-            scene: 2,
+            scene: data.sceneLocation,
             falling: false,
             data: data,
             points: data.points
