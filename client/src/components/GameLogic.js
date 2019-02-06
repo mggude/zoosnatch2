@@ -47,12 +47,12 @@ class GameLogic extends Component {
         monkeySelectImg: null,
         choiceOneImg: null,
         choiceTwoImg: null,
+        banderAnswer: null,
     }
 
 
     // ======================== Display Current Page Component ============================== //
   
-    // ======================== Display Current Page Component ============================== //
 
     // ================= Pass Unlocked Character Imgs to CharacterSelect Page =============== //
     SelectCharacter = (props) => {
@@ -76,9 +76,6 @@ class GameLogic extends Component {
             return 0;
         }
       };
-
-    // ================= Pass Unlocked Character Imgs to CharacterSelect Page =============== //
-
 
 
     // ========================Pass Photos to Bandersnatch Page ============================== //
@@ -128,13 +125,54 @@ class GameLogic extends Component {
         return '{imageOne}';
         return '{imageTwo}';
     }
-    // ========================Pass Photos to Bandersnatch Page ============================== //
+    // ========================Function To Check Answer From Bandersnatch ============================== //
+    // checkBanderAnswer = () => {
+    //     var userInput;
+    //     var correctAnswerText;
+    //     var wrongAnswerText;
+    //     var shortToScene = characters[this.state.currentCharacter].scene[this.state.sceneLocation]
+    
+    //     if (userInput === shortToScene.correctAnswer) {
+    //         console.log("Correct answer!");
+    //         console.log("You chose: " + userInput);
+    //         correctAnswerText = shortToScene.answerTrue
+    //         // update points function
+    //         if (this.state.sceneLocation >= 3) {
+    //             // set showSnatch to false
+    //             // set showMessage to true
+    //                 // pass in new props to render either answerTrue
+    //                 // pass in new props to render button button text to "Continue"
+    //                 // pass in new props to render button to change showMessage to false and showCanvas to true
+                
+    //         } else if (window.localStorage.getItem("currentSceneId") < 3) {
+    //             document.getElementById("continue").style.visibility = "visible";
+    //             document.getElementById("leaderboard").style.visibility = "hidden";
+    //             document.getElementById("makedecision").style.visibility = "hidden";
+    //         }
+    
+    //     } else if (userInput !== characterArray[currentCharacterValue].scene[currentScene].correctAnswer) {
+    //         console.log("WRONG answer!");
+    //         console.log("You chose: " + userChoiceText);
+    //         wrongAnswerText = characterArray[currentCharacterValue].scene[currentScene].answerFalse
+    //         clearInterval(intervalId);
+    //         document.getElementById("leaderboard").style.visibility = "visible";
+    //         document.getElementById("continue").style.visibility = "hidden";
+    //         document.getElementById("makedecision").style.visibility = "hidden";
+    //     }
+    // }   
+        
+
+
+    // ========================Function To Update State From Canvas ============================== //
+    canvasComplete = () => {
+        // line 220 from canvas, function checksceneLocationComplete
+            console.log("passed canvasComplete function works!");
+    }
 
 
     componentDidMount() {
         // this.startGame();
-
-        this.updateImage()
+        this.updateImage();
         console.log("SwitchCase with result of: Char:" + this.state.currentCharacter + " | Scene: " + this.state.sceneLocation + " | ImageOneValue: " + this.state.choiceOneImg + " | ImageTwoValue: " + this.state.choiceTwoImg);
     }
 
@@ -164,6 +202,7 @@ class GameLogic extends Component {
         } else if (this.state.showCanvas) {
             return (
                 <Canvas 
+                    canvasComplete = {this.canvasComplete.bind(this)}
                     currentCharacter={this.state.currentCharacter}
                     sceneLocation={this.state.sceneLocation}
                     points={this.state.points}
@@ -171,8 +210,8 @@ class GameLogic extends Component {
             );
         }
     }
-
-
 }
+
+
 
 export default GameLogic;
