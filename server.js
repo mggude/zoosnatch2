@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Start the API server
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/react-auth-simple", { useNewUrlParser: true }, function(err) {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/zoosnatch2", { useNewUrlParser: true }, function(err) {
     if (err) throw err;
     console.log(`mongoose connection successful`);
     app.listen(PORT, (err)=> {
