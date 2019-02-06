@@ -40,8 +40,8 @@ class GameLogic extends Component {
         points: 0,
         showCaracterSelect: false,
         showMessage: false,
-        showSnatch: true,
-        showCanvas: false,
+        showSnatch: false,
+        showCanvas: true,
         giraffeSelectImg: null,
         bearSelectImg: null,
         monkeySelectImg: null,
@@ -51,39 +51,7 @@ class GameLogic extends Component {
 
 
     // ======================== Display Current Page Component ============================== //
-    render() {
-        if (this.state.showCaracterSelect) {
-            return (
-                <CharacterSelect 
-                    unlockedCharacters = {this.state.unlockedCharacters}
-                />
-            )
-        } else if (this.state.showMessage) {
-            return (
-                <Message />
-            )
-        } else if (this.state.showSnatch) {
-            return (
-                <Snatch
-                    sceneLocation={this.state.sceneLocation}
-                    currentCharacter={this.state.currentCharacter}
-                    // choiceOneImg = {characters[this.state.currentCharacter].scene[this.state.sceneLocation].choiceOneImg}
-                    choiceOneImg={this.state.choiceOneImg}
-                    choiceOneAlt="ChoiceOne"
-                    choiceTwoImg={this.state.choiceTwoImg}
-                    choiceTwoAlt="ChoiceTwo"
-                />
-            );
-        } else if (this.state.showCanvas) {
-            return (
-                <Canvas 
-                    currentCharacter={this.state.currentCharacter}
-                    sceneLocation={this.state.sceneLocation}
-                    points={this.state.points}
-                />
-            );
-        }
-    }
+  
     // ======================== Display Current Page Component ============================== //
 
     // ================= Pass Unlocked Character Imgs to CharacterSelect Page =============== //
@@ -165,13 +133,44 @@ class GameLogic extends Component {
 
     componentDidMount() {
         // this.startGame();
-        this.currentPageComponent();
 
         this.updateImage()
         console.log("SwitchCase with result of: Char:" + this.state.currentCharacter + " | Scene: " + this.state.sceneLocation + " | ImageOneValue: " + this.state.choiceOneImg + " | ImageTwoValue: " + this.state.choiceTwoImg);
     }
 
-
+    render() {
+        if (this.state.showCaracterSelect) {
+            return (
+                <CharacterSelect 
+                    unlockedCharacters = {this.state.unlockedCharacters}
+                />
+            )
+        } else if (this.state.showMessage) {
+            return (
+                <Message />
+            )
+        } else if (this.state.showSnatch) {
+            return (
+                <Snatch
+                    sceneLocation={this.state.sceneLocation}
+                    currentCharacter={this.state.currentCharacter}
+                    // choiceOneImg = {characters[this.state.currentCharacter].scene[this.state.sceneLocation].choiceOneImg}
+                    choiceOneImg={this.state.choiceOneImg}
+                    choiceOneAlt="ChoiceOne"
+                    choiceTwoImg={this.state.choiceTwoImg}
+                    choiceTwoAlt="ChoiceTwo"
+                />
+            );
+        } else if (this.state.showCanvas) {
+            return (
+                <Canvas 
+                    currentCharacter={this.state.currentCharacter}
+                    sceneLocation={this.state.sceneLocation}
+                    points={this.state.points}
+                />
+            );
+        }
+    }
 
 
 }
