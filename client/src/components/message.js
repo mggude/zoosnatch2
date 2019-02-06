@@ -2,7 +2,7 @@ import React from "react";
 import characterObject from "../characters.json";
 import { Container, Row, Col, Button } from "reactstrap";
 
-export const Message = (props) => {
+const Message = (props) => {
     return (
         <>
             <Container>
@@ -22,4 +22,4 @@ export const Message = (props) => {
 };
 
 
-// export default Message;
+export default Message;
