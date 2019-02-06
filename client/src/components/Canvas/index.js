@@ -29,7 +29,7 @@ class Canvas extends Component {
             touching: false,
             currentScene: 0,
             //==== SCENE WILL EQUAL DATA.SCENE=====
-            scene: 1,
+            scene: 2,
             falling: false
         }
         this.background = [];
