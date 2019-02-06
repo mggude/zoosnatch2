@@ -1,35 +1,25 @@
-import React, { Component } from "react";
-import characterObject from "../characters.json";
+import React from "react";
+import characterObject from "../../characters.json";
+import { Container, Row, Col, Button } from "reactstrap";
 
-class Message  extends Component {
-    
-    state = {
-        currentCharacter : this.props.currentCharacter,
-        currentLocation : this.props.sceneLocation
-    }
-    
-    render () {
-        return (
-            // <h2>{props}</h2>
-            <>
-            <h1>Message</h1>
-                {/* <div className="col-md-6 optionOneclassName">
-                    <ImageSquare 
-                        imgsrc = {this.state.imageOne}
-                        altText = {this.state.choiceOneAlt}
-                    />
+export const Message = (props) => {
+    return (
+        <>
+            <Container>
+                <Row>
+                    <Col md="12">
+                        <p>{props.message}</p>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md="12">
+                        <Button onClick={props.handleButtonClick} color="success" block>{props.buttonText}</Button>
+                    </Col>
+                </Row>
+            </Container>
+        </>
+    )
+};
 
-                </div>
-                <div className="col-md-6 optionTwoclassName">
-                    <ImageSquare 
-                        imgsrc = {this.state.imageTwo}
-                        altText = {this.state.choiceTwoAlt}
-                    />
 
-                </div> */}
-            </>
-        )
-    }
-}
-
-export default Message;
+// export default Message;
