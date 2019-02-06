@@ -1,0 +1,31 @@
+h1 {
+    text-align: center;
+}
+
+.progress-containerTwo {
+    float: left;
+    width: 50%;
+    height: 15px;
+    background: black;
+}
+
+.progress-barTwo {
+    float: right;
+    height: 15px;
+    background: red;
+    width: 100%;
+}
+
+.progress-container {
+    float: right;
+    width: 50%;
+    height: 15px;
+    background: black;
+}
+
+.progress-bar {
+
+    height: 15px;
+    background: red;
+    width: 0%;
+}

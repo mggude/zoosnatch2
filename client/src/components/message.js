@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ImageSquare from "./ImageSquare";
 import characterObject from "../../characters.json";
 
 class Message  extends Component {
