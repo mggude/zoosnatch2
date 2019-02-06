@@ -6,9 +6,8 @@ import "../App.css";
 import characters from "../characters.json";
 import { HeaderH2, ImageContainer, ImageSquare, ImageText, ProgressBar, Timer } from "./NewComponents/AllComponents";
 
-
 const Snatch = (props) => {
-
+console.log(props);
         return (
             <>
                 <title>Decision Time</title>
@@ -21,15 +20,15 @@ const Snatch = (props) => {
                                 sceneLocation = {props.sceneLocation}
                                 currentCharacter = {props.currentCharacter}
                                 choiceOneAlt = {props.choiceOneAlt}
-                                imageOne = {props.imageOne}
+                                choiceOneImg = {props.choiceOneImg}
                                 choiceTwoAlt = {props.choiceTwoAlt}
-                                imageTwo = {props.imageTwo}
+                                choiceTwoImg = {props.choiceTwoImg}
                             />
                             {/* <ProgressBar /> */}
-                            <ImageText 
+                            {/* <ImageText 
                                 sceneLocation = {props.sceneLocation}
                                 currentCharacter = {props.currentCharacter}
-                            />
+                            /> */}
                         </div>
                     
                     </div>

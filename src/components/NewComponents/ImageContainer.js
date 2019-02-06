@@ -7,13 +7,13 @@ const ImageContainer = (props) => {
             <>
                 <div className="col-md-6 optionOneclassName">
                     <ImageSquare
-                        imgsrc={props.imageOne}
+                        imgsrc={props.choiceOneImg}
                         altText={props.choiceOneAlt}
                     />
                 </div>
                 <div className="col-md-6 optionTwoclassName">
                     <ImageSquare
-                        imgsrc={props.imageTwo}
+                        imgsrc={props.choiceTwoImg}
                         altText={props.choiceTwoAlt}
                     />
                 </div>
