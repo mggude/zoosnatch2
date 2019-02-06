@@ -21,13 +21,13 @@ export default class Spider {
 
     render(state) {
         //Finally the drawing methods
-        if (this.y > this.screenHeight * .7) {
+        if (this.y > this.screenHeight * .8) {
             this.gravitySpeed = 0;
             this.gravity = -.04;
         //========================================
         } else if (this.y < -10) {
             this.speedY = 0;
-            this.gravity = .05;
+            this.gravity = .1;
         }
         this.gravitySpeed += this.gravity;
         this.y += this.gravitySpeed;

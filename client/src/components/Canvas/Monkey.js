@@ -29,6 +29,10 @@ export default class Character {
     render(state) {
         this.frameCount ++;
         //updates locations based on keys being pressed  
+        if (state.monkeyHealth > 1) {
+            this.gravitySpeed = 0;
+            this.speedY = -4;
+        }
         if (state.keys.left === true) {
             this.speedX = 6;
             this.speedY = -5;
@@ -54,17 +58,20 @@ export default class Character {
                 this.jumping = true;
                 this.jumpOne = true;
                 this.jumpTwo = false;
+                this.speedX = -50;
             } else if (!this.jumpTwo && !this.jumping  && this.frameCount > 55) {
                 this.speedY = -40;
                 this.jumping = true;
                 this.jumpTwo = true;
                 this.jumpThree = false;
+                this.speedX = -50;
             } else if (!this.jumpThree && !this.jumping && this.frameCount > 70) {
                 this.speedY = -60;
                 this.jumping = true;
                 this.jumpThree = true;
                 this.jumpOne = false;
                 this.frameCount = 0;
+                this.speedX = 70;
             }
 
         }
