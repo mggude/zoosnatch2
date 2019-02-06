@@ -6,7 +6,7 @@ import Auth from "./pages/Auth";
 import Game from "./pages/Game"
 import './App.css';
 // import SelectCharacter from './components/characterSelect';
-import Canvas from './components/Canvas/index'
+
 
 class App extends Component {
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import characterObject from "../../characters.json";
+import characterObject from "../characters.json";
 
 class Message  extends Component {
     
