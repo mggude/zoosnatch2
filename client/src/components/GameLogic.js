@@ -90,20 +90,20 @@ class GameLogic extends Component {
     SelectCharacter = (props) => {
         switch (this.state.unlockedCharacters) {
           case 0:
-            this.state.giraffeImage.setState = characters[0].staticImg;
-            this.state.bearImage.setState = characters[1].cagedImg;
-            this.state.monkeyImage.setState = characters[0].cagedImg
+            this.setState ({giraffeSelectImg : {StaticGiraffe} });
+            this.setState ({bearSelectImg : {CagedBear} });
+            this.setState ({monkeySelectImg : {CagedMonkey} });
             break;
           case 1:
-            giraffeImage = giraffe.staticImg;
-            bearImage = bear.staticImg;
-            monkeyImage = monkey.cagedImg;
-            break;
+            this.setState ({giraffeSelectImg : {StaticGiraffe} });
+            this.setState ({bearSelectImg : {StaticBear} });
+            this.setState ({monkeySelectImg : {CagedMonkey} });
+          break;
           case 2:
-            giraffeImage = giraffe.staticImg;
-            bearImage = bear.staticImg;
-            monkeyImage = monkey.staticImg;
-            break;
+            this.setState ({giraffeSelectImg : {StaticGiraffe} });
+            this.setState ({bearSelectImg : {StaticBear} });
+            this.setState ({monkeySelectImg : {StaticMonkey} });
+          break;
           default:
             return 0;
         }
