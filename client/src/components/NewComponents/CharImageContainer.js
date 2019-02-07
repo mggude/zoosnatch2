@@ -8,7 +8,7 @@ const CharImageContainer = (props) => {
         <>
             <div className="col-md-3 optionOneclassName">
                 {/* how to pass props from grandparent?? */}
-                <span onClick={() => props.canvasComplete(0)}>
+                <span onClick={() => props.selectedCharacterUpdatingState (0)}>
 
                     <CharImageSquare
                         imgsrc={props.giraffeImage}
@@ -23,7 +23,7 @@ const CharImageContainer = (props) => {
 
             <div className="col-md-3 optionTwoclassName">
 
-                <span onClick={() => props.canvasComplete(1)}>
+                <span onClick={() => props.selectedCharacterUpdatingState (1)}>
 
                     <CharImageSquare
                         imgsrc={props.bearImage}
@@ -35,7 +35,7 @@ const CharImageContainer = (props) => {
             </div>
             <div className="col-md-3 optionThreeclassName">
 
-                <span onClick={() => props.canvasComplete(2)}>
+                <span onClick={() => props.selectedCharacterUpdatingState (2)}>
 
                     <CharImageSquare
                         imgsrc={props.monkeyImage}
