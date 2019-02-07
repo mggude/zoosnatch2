@@ -13,6 +13,7 @@ export const Message = (props) => {
                 </Row>
                 <Row>
                     <Col md="12">
+                        <span onClick={() => props.selectedCharacterUpdatingState()}> </span>
                         <Button onClick={props.handleButtonClick} color="success" block>{props.buttonText}</Button>
                     </Col>
                 </Row>

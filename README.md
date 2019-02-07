@@ -17,7 +17,7 @@ Once logged in, users are routed to the Choose Character page. There, the user s
 Depending on the character unlocked, the game begins and with multiple choices, obstacles, and possible demise, our user gains points to (hopefully) make it to the end and have the opportunity to unlock the next character to play whatever fate has in store! :sparkles:
 
 ## Group Members 
-* [Grace Gudde](https://github.com/mggude)
+* [Grace Gude](https://github.com/mggude)
 * [Connor Jaksik](https://github.com/jaksik)
 * [Kyle Durigan](https://github.com/kDurg)
 * [Caleb Colon](https://github.com/Ccolon105)
