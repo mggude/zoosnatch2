@@ -208,6 +208,7 @@ class GameLogic extends Component {
                     giraffeSelectImg = {this.state.giraffeSelectImg}
                     bearSelectImg = {this.state.bearSelectImg}
                     monkeySelectImg = {this.state.monkeySelectImg}
+                    canvasComplete = {this.selectedCharacterUpdatingState.bind(this)}
                 />
             )
         } else if (this.state.showMessage) {
