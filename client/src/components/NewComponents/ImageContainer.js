@@ -12,6 +12,8 @@ const ImageContainer = (props) => {
         float: "right",
         justifyContent: "center"
     }
+
+    console.log("image Container");
     return (
         <>
             <Container>
@@ -22,8 +24,11 @@ const ImageContainer = (props) => {
                                 imgsrc={props.choiceOneImg}
                                 altText={props.choiceOneAlt}
                                 id={props.choiceOneID}
+                                checkBanderAnswer={props.checkBanderAnswer.bind(this)}
+
                             />
                             <p>{props.choiceOneText}</p>
+                            <span onClick= { () => (props.checkBanderAnswer(props.choiceOneID))} />
                         </div>
                     </Col>
                     <Col>
@@ -34,9 +39,9 @@ const ImageContainer = (props) => {
                                 id={props.choiceTwoID}
                             />
                             <p>{props.choiceTwoText}</p>
+                            <span onClick= { () => (props.checkBanderAnswer(props.choiceTwoID))} />
                         </div>
                     </Col>
-                
                 </Row>
             </Container>
         </>

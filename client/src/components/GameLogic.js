@@ -39,14 +39,14 @@ class GameLogic extends Component {
         sceneLocation: 0,
         points: 0,
 
-        showCaracterSelect: false,
+        showCaracterSelect: true,
         showMessage: false,
-        showSnatch: true,
+        showSnatch: false,
         showCanvas: false,
 
-        giraffeSelectImg: null,
-        bearSelectImg: null,
-        monkeySelectImg: null,
+        giraffeSelectImg: StaticGiraffe,
+        bearSelectImg: StaticBear,
+        monkeySelectImg: CagedMonkey,
 
         choiceOneImg: null,
         choiceOneAlt: null,
@@ -60,7 +60,7 @@ class GameLogic extends Component {
   
 
     // ================= Pass Unlocked Character Imgs to CharacterSelect Page =============== //
-    SelectCharacter = (props) => {
+    SelectCharacter = () => {
         switch (this.state.unlockedCharacters) {
           case 0:
             this.setState ({giraffeSelectImg : {StaticGiraffe} });
@@ -131,58 +131,61 @@ class GameLogic extends Component {
     // ========================Function To Pass To Bandersnatch Component ============================== //
 
     // ========================Function To Check Answer From Bandersnatch ============================== //
-    listenBanderAnswer = () => {
-        const userInput = null;
-        console.log("started listenBanderAnswer")
+    // listenBanderAnswer = () => {
+    //     const userInput = null;
+    //     console.log("started listenBanderAnswer")
     
-        // set function to an onClick event to set userInput to the  
-        document.getElementById("optionOneImg").addEventListener("click",function() {
-            userInput = "choiceOne";
-            // userChoiceText = characterArray[currentCharacterValue].scene[currentScene].choiceOne;
-            console.log("clicked on image one");
-            this.checkAnswer (userInput);
-        })
-        document.getElementById("optionTwoImg").addEventListener("click",function() {
-            userInput = "choiceTwo";
-            // userChoiceText = characterArray[currentCharacterValue].scene[currentScene].choiceTwo;
-            console.log("clicked on image two");
-            this.checkAnswer (userInput);
-        })
-    }   
+    //     // set function to an onClick event to set userInput to the  
+    //     document.getElementById("optionOneImg").addEventListener("click",function() {
+    //         userInput = "choiceOne";
+    //         // userChoiceText = characterArray[currentCharacterValue].scene[currentScene].choiceOne;
+    //         console.log("clicked on image one");
+    //         this.checkAnswer (userInput);
+    //     })
+    //     document.getElementById("optionTwoImg").addEventListener("click",function() {
+    //         userInput = "choiceTwo";
+    //         // userChoiceText = characterArray[currentCharacterValue].scene[currentScene].choiceTwo;
+    //         console.log("clicked on image two");
+    //         this.checkAnswer (userInput);
+    //     })
+    // }   
     checkBanderAnswer = (userInput) => {
         const shortToScene = characters[this.state.currentCharacter].scene[this.state.sceneLocation];
-
+        // const userInput = 
         console.log("started checkBanderAnswer")
-
-        if (userInput === shortToScene.correctAnswer) {
-            console.log("Correct answer!");
-            console.log("You chose: " + userInput);
-            // update points function
-            if (this.state.sceneLocation >= 3) {
-                // set showSnatch to false
-                // set showMessage to true
-                    // pass in new props to render answerTrue
-                    // pass in new props to render button button text to "Go to Leaderboards"
-                    // pass in new props to render button to upload state to database, send to leaderboard HTML page
-                
-            } else if (this.state.sceneLocation < 3) {
-                // set showSnatch to false
-                // set showMessage to true
-                    // pass in new props to render answerTrue
-                    // pass in new props to render button button text to "Continue"
-                    // pass in new props to render button to set State showMessage to false, showCanvas to true   
+        userInput = this.id;
+        
+            if (userInput === shortToScene.correctAnswer) {
+                console.log("Correct answer!");
+                console.log("You chose: " + userInput);
+                // update points function
+                if (this.state.sceneLocation >= 3) {
+                    // set showSnatch to false
+                    // set showMessage to true
+                        // pass in new props to render answerTrue
+                        // pass in new props to render button button text to "Go to Leaderboards"
+                        // pass in new props to render button to upload state to database, send to leaderboard HTML page
+                    
+                } else if (this.state.sceneLocation < 3) {
+                    // set showSnatch to false
+                    // set showMessage to true
+                        // pass in new props to render answerTrue
+                        // pass in new props to render button button text to "Continue"
+                        // pass in new props to render button to set State showMessage to false, showCanvas to true   
+                }
+        
+            } else if (userInput !== shortToScene.correctAnswer) {
+                console.log("WRONG answer!");
+                console.log("You chose: " + userInput);
+                    // set showSnatch to false
+                    // set showMessage to true
+                        // pass in new props to render answerFalse
+                        // pass in new props to render button button text to "Go to Leaderboards"
+                        // pass in new props to render button to upload state to database, send to leaderboard HTML page
             }
-    
-        } else if (userInput !== shortToScene.correctAnswer) {
-            console.log("WRONG answer!");
-            console.log("You chose: " + userInput);
-                // set showSnatch to false
-                // set showMessage to true
-                    // pass in new props to render answerFalse
-                    // pass in new props to render button button text to "Go to Leaderboards"
-                    // pass in new props to render button to upload state to database, send to leaderboard HTML page
         }
-    }
+        
+        
     // ========================Function To Update State From Canvas ============================== //
     canvasComplete = (canvasPoints) => {
         // line 220 from canvas, function checksceneLocationComplete
