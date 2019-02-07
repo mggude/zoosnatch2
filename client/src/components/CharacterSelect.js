@@ -21,7 +21,7 @@ const SelectCharacter = props => {
           giraffeImage={props.giraffeSelectImg}
           bearImage={props.bearSelectImg}
           monkeyImage={props.monkeySelectImg}
-          canvasComplete={props.canvasComplete}
+          selectedCharacterUpdatingState ={props.selectedCharacterUpdatingState }
 
         />
         
