@@ -13,3 +13,4 @@ class CharacterSelect extends Component {
         )
     }
 }
+export default CharacterSelect;

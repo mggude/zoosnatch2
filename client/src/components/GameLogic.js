@@ -215,10 +215,10 @@ class GameLogic extends Component {
         this.setState({messageText: characters[this.state.currentCharacter].scene[this.state.sceneLocation].question})
     }
 
-    componentDidUpdate() {
-        this.setState ({giraffeSelectImg : {StaticGiraffe} }, {bearSelectImg : {CagedBear} }, {monkeySelectImg : {CagedMonkey} });
+    // componentDidUpdate() {
+    //     this.setState ({giraffeSelectImg : {StaticGiraffe} }, {bearSelectImg : {CagedBear} }, {monkeySelectImg : {CagedMonkey} });
 
-    }
+    // }
 
     render() {
         if (this.state.showCaracterSelect) {
