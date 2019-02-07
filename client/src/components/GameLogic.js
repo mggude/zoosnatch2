@@ -39,10 +39,10 @@ class GameLogic extends Component {
         sceneLocation: 0,
         points: 0,
 
-        showCaracterSelect: true,
+        showCaracterSelect: false,
         showMessage: false,
         showSnatch: false,
-        showCanvas: false,
+        showCanvas: true,
 
         giraffeSelectImg: null,
         bearSelectImg: null,
@@ -54,10 +54,12 @@ class GameLogic extends Component {
         choiceTwoAlt: null,
         correctAnswer: null,
 
-        messageText: null,
-        buttonText: null,
     }
 
+
+forceUpdateHandler(){
+  this.forceUpdate.bind(this);
+};
 
     // ======================== Display Current Page Component ============================== //
   
@@ -88,8 +90,13 @@ class GameLogic extends Component {
     selectedCharacterUpdatingState = (num) => {
         var selectedCharacterImage = null;
         this.setState({ currentCharacter: num});
+<<<<<<< HEAD
+        this.setState({showCaracterSelect : false}, {showMessage: true});
+        this.forceUpdateHandler();
+=======
         this.setState({showMessage: true}, {showCaracterSelect : false});
         this.render();
+>>>>>>> 0e921403fff86f55e086d179af141ed2c504415e
     }
     // =============================== Update Message Page =================================== //
     showQuestion = () => {
