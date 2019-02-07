@@ -1,14 +1,9 @@
 import React from "react";
-// import './about.css';
-// import { Link } from "react-router-dom";
-// import './leaderboard.css';
 import { Col, Row, Container } from "reactstrap";
 import API from "../../utils/API";
 
 //#ONE add score to user model
-
 //#TWO api call to data base
-
 //#THREE render top 5 scores on componentDidMount
 
 
@@ -46,23 +41,22 @@ class Leaderboard extends React.Component {
                     <Col size="md-12">
                         <h1 className="text-center">ZooSnatch</h1>
                     </Col>
-                    <Col size="md-4">
+                    <Col size="md-6">
                         <h2 id="scoreBanner" className="leaderboard">Your Score:</h2>
                         <h2><span id="individualScore">
                        <p> {this.state.lastScore.score}</p>
-            
                         </span></h2>
                     </Col>
-                    <Col size="md-4">
+                    <Col size="md-6">
                         <h2 className="leaderboard">Leaderboard</h2>
                         {this.state.scoreData.map(score => (
-                            <p key={score._id}>{score.username}: {score.score}</p>
+                            <h3 key={score._id}>{score.username}: {score.score}</h3>
                         ))}
                     </Col>
                 </Row>
                 <footer className="fixed-bottom text-center">
                     <div className="container">
-                        <a href="/home">Home</a>
+                        <a href="/">Home</a>
                     </div>
                 </footer>
             </Container>
@@ -73,6 +67,3 @@ class Leaderboard extends React.Component {
 export default Leaderboard;
 
 
-// {this.state.scoreData.map(score => (
-//     <p>{score.username}: {score.score}</p>
-// ))}
