@@ -44,9 +44,9 @@ class GameLogic extends Component {
         showSnatch: false,
         showCanvas: false,
 
-        giraffeSelectImg: null,
-        bearSelectImg: null,
-        monkeySelectImg: null,
+        giraffeSelectImg: CagedGiraffe,
+        bearSelectImg: StaticBear,
+        monkeySelectImg: CagedMonkey,
 
         choiceOneImg: null,
         choiceOneAlt: null,
@@ -66,30 +66,30 @@ class GameLogic extends Component {
     SelectCharacter = () => {
         switch (this.state.unlockedCharacters) {
           case 0:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} }, {bearSelectImg : {CagedBear} }, {monkeySelectImg : {CagedMonkey} });
-            // this.setState ({bearSelectImg : {CagedBear} });
-            // this.setState ({monkeySelectImg : {CagedMonkey} });
+            this.setState ({giraffeSelectImg : {StaticGiraffe} });
+            this.setState ({bearSelectImg : {CagedBear} });
+            this.setState ({monkeySelectImg : {CagedMonkey} });
             break;
-        //   case 1:
-        //     this.setState ({giraffeSelectImg : {StaticGiraffe} });
-        //     this.setState ({bearSelectImg : {StaticBear} });
-        //     this.setState ({monkeySelectImg : {CagedMonkey} });
-        //   break;
-        //   case 2:
-        //     this.setState ({giraffeSelectImg : {StaticGiraffe} });
-        //     this.setState ({bearSelectImg : {StaticBear} });
-        //     this.setState ({monkeySelectImg : {StaticMonkey} });
-        //   break;
+          case 1:
+            this.setState ({giraffeSelectImg : {StaticGiraffe} });
+            this.setState ({bearSelectImg : {StaticBear} });
+            this.setState ({monkeySelectImg : {CagedMonkey} });
+          break;
+          case 2:
+            this.setState ({giraffeSelectImg : {StaticGiraffe} });
+            this.setState ({bearSelectImg : {StaticBear} });
+            this.setState ({monkeySelectImg : {StaticMonkey} });
+          break;
           default:
             return 0;
         }
     };
     // ======================== Update State From SelectCharacter Page ======================= //
     selectedCharacterUpdatingState = (num) => {
-        var selectedCharacterImage = null;
-        this.setState({ currentCharacter: num});
-        this.setState({showMessage: true}, {showCaracterSelect : false});
-        this.render();
+        // var selectedCharacterImage = null;
+        // this.setState({ currentCharacter: num});
+        // this.setState({showMessage: true}, {showCaracterSelect : false});
+        // this.render();
     }
     // =============================== Update Message Page =================================== //
     showQuestion = () => {
