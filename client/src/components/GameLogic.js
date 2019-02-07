@@ -44,9 +44,9 @@ class GameLogic extends Component {
         showSnatch: false,
         showCanvas: false,
 
-        giraffeSelectImg: StaticGiraffe,
-        bearSelectImg: StaticBear,
-        monkeySelectImg: CagedMonkey,
+        giraffeSelectImg: null,
+        bearSelectImg: null,
+        monkeySelectImg: null,
 
         choiceOneImg: null,
         choiceOneAlt: null,
@@ -66,20 +66,20 @@ class GameLogic extends Component {
     SelectCharacter = () => {
         switch (this.state.unlockedCharacters) {
           case 0:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} });
-            this.setState ({bearSelectImg : {CagedBear} });
-            this.setState ({monkeySelectImg : {CagedMonkey} });
+            this.setState ({giraffeSelectImg : {StaticGiraffe} }, {bearSelectImg : {CagedBear} }, {monkeySelectImg : {CagedMonkey} });
+            // this.setState ({bearSelectImg : {CagedBear} });
+            // this.setState ({monkeySelectImg : {CagedMonkey} });
             break;
-          case 1:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} });
-            this.setState ({bearSelectImg : {StaticBear} });
-            this.setState ({monkeySelectImg : {CagedMonkey} });
-          break;
-          case 2:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} });
-            this.setState ({bearSelectImg : {StaticBear} });
-            this.setState ({monkeySelectImg : {StaticMonkey} });
-          break;
+        //   case 1:
+        //     this.setState ({giraffeSelectImg : {StaticGiraffe} });
+        //     this.setState ({bearSelectImg : {StaticBear} });
+        //     this.setState ({monkeySelectImg : {CagedMonkey} });
+        //   break;
+        //   case 2:
+        //     this.setState ({giraffeSelectImg : {StaticGiraffe} });
+        //     this.setState ({bearSelectImg : {StaticBear} });
+        //     this.setState ({monkeySelectImg : {StaticMonkey} });
+        //   break;
           default:
             return 0;
         }
@@ -212,10 +212,13 @@ class GameLogic extends Component {
     // ========================Functionality of GameLogic Component ============================== //
     componentDidMount() {
         this.updateImage();
-        console.log("SwitchCase with result of: Char:" + this.state.currentCharacter + " | Scene: " + this.state.sceneLocation + " | ImageOneValue: " + this.state.choiceOneImg + " | ImageTwoValue: " + this.state.choiceTwoImg);
         this.setState({messageText: characters[this.state.currentCharacter].scene[this.state.sceneLocation].question})
-        console.log(this.state.messageText);
     }
+
+    // componentDidUpdate() {
+    //     this.setState ({giraffeSelectImg : {StaticGiraffe} }, {bearSelectImg : {CagedBear} }, {monkeySelectImg : {CagedMonkey} });
+
+    // }
 
     render() {
         if (this.state.showCaracterSelect) {
