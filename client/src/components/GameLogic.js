@@ -81,6 +81,13 @@ class GameLogic extends Component {
             return 0;
         }
     };
+    // ======================== Update State From SelectCharacter Page ======================= //
+    selectedCharacterUpdatingState = (num) => {
+        var selectedCharacterImage = null;
+
+        this.setState({ currentCharacter: selectedCharacterImage});
+    }
+
     // ========================Pass Photos to Bandersnatch Page ============================== //
     updateImage = () => {
         switch (this.state.currentCharacter) {
