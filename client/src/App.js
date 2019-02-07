@@ -5,9 +5,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Auth from "./pages/Auth";
 import Game from "./pages/Game"
 import "./App.css"
-// import SelectCharacter from './components/characterSelect';
 import Leaderboard from './pages/Leaderboard/index';
 import Contact from './pages/Contact/index';
+import CharacterSelect from './pages/CharacterSelect/index';
 
 
 class App extends Component {
@@ -24,6 +24,7 @@ class App extends Component {
         <Route exact path="/canvas" component={Canvas} />
         <Route exact path="/leaderboard" component={Leaderboard} />
         <Route exact path="/contact" component={Contact} />
+        <Route exact path="/characters" component={CharacterSelect} />
 
         </>
       </Router>

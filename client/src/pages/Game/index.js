@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GameLogic from "../../components/GameLogic";
+import GameLogic from "../CharacterSelect/GameLogic";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom"
 import API from "../../utils/API"

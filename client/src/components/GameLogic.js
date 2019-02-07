@@ -44,9 +44,9 @@ class GameLogic extends Component {
         showSnatch: false,
         showCanvas: true,
 
-        giraffeSelectImg: StaticGiraffe,
-        bearSelectImg: StaticBear,
-        monkeySelectImg: CagedMonkey,
+        giraffeSelectImg: null,
+        bearSelectImg: null,
+        monkeySelectImg: null,
 
         choiceOneImg: null,
         choiceOneAlt: null,
@@ -68,20 +68,20 @@ forceUpdateHandler(){
     SelectCharacter = () => {
         switch (this.state.unlockedCharacters) {
           case 0:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} });
-            this.setState ({bearSelectImg : {CagedBear} });
-            this.setState ({monkeySelectImg : {CagedMonkey} });
+            this.setState ({giraffeSelectImg : {StaticGiraffe} }, {bearSelectImg : {CagedBear} }, {monkeySelectImg : {CagedMonkey} });
+            // this.setState ({bearSelectImg : {CagedBear} });
+            // this.setState ({monkeySelectImg : {CagedMonkey} });
             break;
-          case 1:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} });
-            this.setState ({bearSelectImg : {StaticBear} });
-            this.setState ({monkeySelectImg : {CagedMonkey} });
-          break;
-          case 2:
-            this.setState ({giraffeSelectImg : {StaticGiraffe} });
-            this.setState ({bearSelectImg : {StaticBear} });
-            this.setState ({monkeySelectImg : {StaticMonkey} });
-          break;
+        //   case 1:
+        //     this.setState ({giraffeSelectImg : {StaticGiraffe} });
+        //     this.setState ({bearSelectImg : {StaticBear} });
+        //     this.setState ({monkeySelectImg : {CagedMonkey} });
+        //   break;
+        //   case 2:
+        //     this.setState ({giraffeSelectImg : {StaticGiraffe} });
+        //     this.setState ({bearSelectImg : {StaticBear} });
+        //     this.setState ({monkeySelectImg : {StaticMonkey} });
+        //   break;
           default:
             return 0;
         }
@@ -90,8 +90,17 @@ forceUpdateHandler(){
     selectedCharacterUpdatingState = (num) => {
         var selectedCharacterImage = null;
         this.setState({ currentCharacter: num});
+<<<<<<< HEAD
         this.setState({showCaracterSelect : false}, {showMessage: true});
         this.forceUpdateHandler();
+=======
+        this.setState({showMessage: true}, {showCaracterSelect : false});
+        this.render();
+>>>>>>> 0e921403fff86f55e086d179af141ed2c504415e
+    }
+    // =============================== Update Message Page =================================== //
+    showQuestion = () => {
+
     }
 
     // ========================Pass Photos to Bandersnatch Page ============================== //
@@ -210,8 +219,13 @@ forceUpdateHandler(){
     // ========================Functionality of GameLogic Component ============================== //
     componentDidMount() {
         this.updateImage();
-        console.log("SwitchCase with result of: Char:" + this.state.currentCharacter + " | Scene: " + this.state.sceneLocation + " | ImageOneValue: " + this.state.choiceOneImg + " | ImageTwoValue: " + this.state.choiceTwoImg);
+        this.setState({messageText: characters[this.state.currentCharacter].scene[this.state.sceneLocation].question})
     }
+
+    // componentDidUpdate() {
+    //     this.setState ({giraffeSelectImg : {StaticGiraffe} }, {bearSelectImg : {CagedBear} }, {monkeySelectImg : {CagedMonkey} });
+
+    // }
 
     render() {
         if (this.state.showCaracterSelect) {
@@ -226,7 +240,10 @@ forceUpdateHandler(){
             )
         } else if (this.state.showMessage) {
             return (
-                <Message />
+                <Message 
+                    messageText={this.state.messageText}
+                    buttonText= "Continue"
+                />
             )
         } else if (this.state.showSnatch) {
             return (
