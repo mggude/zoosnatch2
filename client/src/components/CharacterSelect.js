@@ -16,9 +16,9 @@ const SelectCharacter = props => {
 
       <div className="row">
         <CharImageContainer
-          giraffeImage={props.giraffeImage}
-          bearImage={props.bearImage}
-          monkeyImage={props.monkeyImage}
+          giraffeImage={props.giraffeSelectImg}
+          bearImage={props.bearSelectImg}
+          monkeyImage={props.monkeySelectImg}
         />
       </div>
     </>
