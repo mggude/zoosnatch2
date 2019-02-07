@@ -1,5 +1,4 @@
 import React from "react";
-// import "./contact.css";
 import { Col, Row, Container } from "reactstrap";
 import { Link } from "react-router-dom";
 
