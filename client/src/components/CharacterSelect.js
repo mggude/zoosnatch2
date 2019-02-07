@@ -15,11 +15,17 @@ const SelectCharacter = props => {
       <HeaderH2 text="Choose a Character" />
 
       <div className="row">
+      <span onClick={() => props.selectedCharacterUpdatingState()}> </span>
+
         <CharImageContainer
-          giraffeImage={props.giraffeImage}
-          bearImage={props.bearImage}
-          monkeyImage={props.monkeyImage}
+          giraffeImage={props.giraffeSelectImg}
+          bearImage={props.bearSelectImg}
+          monkeyImage={props.monkeySelectImg}
+          canvasComplete={props.canvasComplete}
+
         />
+        
+     
       </div>
     </>
   );

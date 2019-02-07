@@ -26,7 +26,7 @@ const Snatch = (props) => {
                 choiceTwoAlt={props.choiceTwoAlt}
                 choiceTwoImg={props.choiceTwoImg}
                 choiceTwoID={props.choiceTwoID}
-                checkBanderAnswer={props.checkBanderAnswer()}
+                checkBanderAnswer={props.checkBanderAnswer.bind(this)}
             />
                {/* <ImageText
                 choiceOneText={props.choiceOneText}
