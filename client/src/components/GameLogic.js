@@ -53,6 +53,9 @@ class GameLogic extends Component {
         choiceTwoImg: null,
         choiceTwoAlt: null,
         correctAnswer: null,
+
+        messageText: null,
+        buttonText: null,
     }
 
 
@@ -85,8 +88,12 @@ class GameLogic extends Component {
     selectedCharacterUpdatingState = (num) => {
         var selectedCharacterImage = null;
         this.setState({ currentCharacter: num});
-        this.setState({showCaracterSelect : false}, {showMessage: true});
+        this.setState({showMessage: true}, {showCaracterSelect : false});
         this.render();
+    }
+    // =============================== Update Message Page =================================== //
+    showQuestion = () => {
+
     }
 
     // ========================Pass Photos to Bandersnatch Page ============================== //
@@ -206,6 +213,8 @@ class GameLogic extends Component {
     componentDidMount() {
         this.updateImage();
         console.log("SwitchCase with result of: Char:" + this.state.currentCharacter + " | Scene: " + this.state.sceneLocation + " | ImageOneValue: " + this.state.choiceOneImg + " | ImageTwoValue: " + this.state.choiceTwoImg);
+        this.setState({messageText: characters[this.state.currentCharacter].scene[this.state.sceneLocation].question})
+        console.log(this.state.messageText);
     }
 
     render() {
@@ -221,7 +230,10 @@ class GameLogic extends Component {
             )
         } else if (this.state.showMessage) {
             return (
-                <Message />
+                <Message 
+                    messageText={this.state.messageText}
+                    buttonText= "Continue"
+                />
             )
         } else if (this.state.showSnatch) {
             return (
