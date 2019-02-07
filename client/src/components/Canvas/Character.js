@@ -23,6 +23,8 @@ export default class Character {
         this.gravitySpeed = 0;
         this.rockBottom = this.screenHeight - this.height;
         this.currentImg = BearOne;
+        this.hitBottom = false;
+        this.jumping = false;
     }
 
     //for walking sprite effect
@@ -53,7 +55,10 @@ export default class Character {
         }
         if (state.keys.up === true) {
             this.speedY = -15;
-        };
+            this.jumping = true;
+        } else {
+            this.jumping = false;
+        }
         if (state.scene === 1) {
             if (state.keys.up === true) {
                 this.speedY = -30;
@@ -78,6 +83,9 @@ export default class Character {
     } else if (this.y > this.rockBottom) {
             this.y = this.rockBottom;
             this.gravitySpeed = 0;
+            this.hitBottom = true;
+    } else {
+        this.hitBottom = false;
     }
     //this creates a new character image after X and Y have been updated
         let image = new Image();

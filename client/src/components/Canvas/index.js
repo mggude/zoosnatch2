@@ -196,24 +196,30 @@ class Canvas extends Component {
                     });
                 }
             } else if (this.state.scene === 1) {
-                if (characters.x > (object.x + object.width) && characters.x < (this.objects[(i + 1)].x)) {
+                if (characters.x > (object.x + object.width) && characters.x < (this.objects[(i + 1)].x) && !characters.jumping && !characters.hitBottom) {
                     console.log("falling");
                     this.setState({ falling: true });
+                    this.setState({ health: 1});
                 }
             } else if (this.state.scene === 2) {
-                if (monkey.x < (characters.x + characters.width)) {
-                    this.setState({
-                        health: this.state.health + .001,
-                        touching: true
-                    });
-                } else if (object.x > monkey.x && object.x < (monkey.x + monkey.width)) {
-                    this.setState({ monkeyHealth: this.state.monkeyHealth + .05 });
+                console.log("check touching scene two")
+                if (object.x > monkey.x && object.x < (monkey.x + monkey.width) && object.y < (monkey.y + monkey.height)) {
+                    this.setState({ monkeyHealth: this.state.monkeyHealth + .02 });
                     console.log("Monkey health", this.state.monkeyHealth)
                 } else if (object.x > this.state.screen.width) {
                     this.objects.shift();
-                } else {
-                    this.setState({ touching: false });
-                }
+                } 
+            }
+            
+        }
+        if (this.state.scene === 2) {
+            if (monkey.x < (characters.x + characters.width) && this.state.monkeyHealth < 1) {
+                this.setState({
+                    health: this.state.health + .01 ,
+                    touching: true
+                });
+            } else {
+                this.setState({ touching: false });
             }
         }
     }
@@ -237,7 +243,5 @@ class Canvas extends Component {
         )
     }
 }
-
-
 
 export default Canvas;

@@ -36,18 +36,23 @@ class GameLogic extends Component {
     state = {
         unlockedCharacters: 0,
         currentCharacter: 0,
-        sceneLocation: 2,
+        sceneLocation: 0,
         points: 0,
+
         showCaracterSelect: false,
         showMessage: false,
-        showSnatch: false,
-        showCanvas: true,
+        showSnatch: true,
+        showCanvas: false,
+
         giraffeSelectImg: null,
         bearSelectImg: null,
         monkeySelectImg: null,
+
         choiceOneImg: null,
+        choiceOneAlt: null,
         choiceTwoImg: null,
-        banderAnswer: null,
+        choiceTwoAlt: null,
+        correctAnswer: null,
     }
 
 
@@ -75,9 +80,7 @@ class GameLogic extends Component {
           default:
             return 0;
         }
-      };
-
-
+    };
     // ========================Pass Photos to Bandersnatch Page ============================== //
     updateImage = () => {
         switch (this.state.currentCharacter) {
@@ -125,53 +128,71 @@ class GameLogic extends Component {
         return '{imageOne}';
         return '{imageTwo}';
     }
+    // ========================Function To Pass To Bandersnatch Component ============================== //
+
     // ========================Function To Check Answer From Bandersnatch ============================== //
-    // checkBanderAnswer = () => {
-    //     var userInput;
-    //     var correctAnswerText;
-    //     var wrongAnswerText;
-    //     var shortToScene = characters[this.state.currentCharacter].scene[this.state.sceneLocation]
+    listenBanderAnswer = () => {
+        const userInput = null;
+        console.log("started listenBanderAnswer")
     
-    //     if (userInput === shortToScene.correctAnswer) {
-    //         console.log("Correct answer!");
-    //         console.log("You chose: " + userInput);
-    //         correctAnswerText = shortToScene.answerTrue
-    //         // update points function
-    //         if (this.state.sceneLocation >= 3) {
-    //             // set showSnatch to false
-    //             // set showMessage to true
-    //                 // pass in new props to render either answerTrue
-    //                 // pass in new props to render button button text to "Continue"
-    //                 // pass in new props to render button to change showMessage to false and showCanvas to true
+        // set function to an onClick event to set userInput to the  
+        document.getElementById("optionOneImg").addEventListener("click",function() {
+            userInput = "choiceOne";
+            // userChoiceText = characterArray[currentCharacterValue].scene[currentScene].choiceOne;
+            console.log("clicked on image one");
+            this.checkAnswer (userInput);
+        })
+        document.getElementById("optionTwoImg").addEventListener("click",function() {
+            userInput = "choiceTwo";
+            // userChoiceText = characterArray[currentCharacterValue].scene[currentScene].choiceTwo;
+            console.log("clicked on image two");
+            this.checkAnswer (userInput);
+        })
+    }   
+    checkBanderAnswer = (userInput) => {
+        const shortToScene = characters[this.state.currentCharacter].scene[this.state.sceneLocation];
+
+        console.log("started checkBanderAnswer")
+
+        if (userInput === shortToScene.correctAnswer) {
+            console.log("Correct answer!");
+            console.log("You chose: " + userInput);
+            // update points function
+            if (this.state.sceneLocation >= 3) {
+                // set showSnatch to false
+                // set showMessage to true
+                    // pass in new props to render answerTrue
+                    // pass in new props to render button button text to "Go to Leaderboards"
+                    // pass in new props to render button to upload state to database, send to leaderboard HTML page
                 
-    //         } else if (window.localStorage.getItem("currentSceneId") < 3) {
-    //             document.getElementById("continue").style.visibility = "visible";
-    //             document.getElementById("leaderboard").style.visibility = "hidden";
-    //             document.getElementById("makedecision").style.visibility = "hidden";
-    //         }
+            } else if (this.state.sceneLocation < 3) {
+                // set showSnatch to false
+                // set showMessage to true
+                    // pass in new props to render answerTrue
+                    // pass in new props to render button button text to "Continue"
+                    // pass in new props to render button to set State showMessage to false, showCanvas to true   
+            }
     
-    //     } else if (userInput !== characterArray[currentCharacterValue].scene[currentScene].correctAnswer) {
-    //         console.log("WRONG answer!");
-    //         console.log("You chose: " + userChoiceText);
-    //         wrongAnswerText = characterArray[currentCharacterValue].scene[currentScene].answerFalse
-    //         clearInterval(intervalId);
-    //         document.getElementById("leaderboard").style.visibility = "visible";
-    //         document.getElementById("continue").style.visibility = "hidden";
-    //         document.getElementById("makedecision").style.visibility = "hidden";
-    //     }
-    // }   
-        
-
-
+        } else if (userInput !== shortToScene.correctAnswer) {
+            console.log("WRONG answer!");
+            console.log("You chose: " + userInput);
+                // set showSnatch to false
+                // set showMessage to true
+                    // pass in new props to render answerFalse
+                    // pass in new props to render button button text to "Go to Leaderboards"
+                    // pass in new props to render button to upload state to database, send to leaderboard HTML page
+        }
+    }
     // ========================Function To Update State From Canvas ============================== //
-    canvasComplete = () => {
+    canvasComplete = (canvasPoints) => {
         // line 220 from canvas, function checksceneLocationComplete
             console.log("passed canvasComplete function works!");
+            this.setState({ points: this.state.points + canvasPoints});
+            this.setState({ sceneLocation: this.state.sceneLocation++ });
+            console.log("canvasPoints: " + canvasPoints + " statePoints: " + this.state.points);
     }
-
-
+    // ========================Functionality of GameLogic Component ============================== //
     componentDidMount() {
-        // this.startGame();
         this.updateImage();
         console.log("SwitchCase with result of: Char:" + this.state.currentCharacter + " | Scene: " + this.state.sceneLocation + " | ImageOneValue: " + this.state.choiceOneImg + " | ImageTwoValue: " + this.state.choiceTwoImg);
     }
@@ -181,6 +202,9 @@ class GameLogic extends Component {
             return (
                 <CharacterSelect 
                     unlockedCharacters = {this.state.unlockedCharacters}
+                    giraffeSelectImg = {this.state.giraffeSelectImg}
+                    bearSelectImg = {this.state.bearSelectImg}
+                    monkeySelectImg = {this.state.monkeySelectImg}
                 />
             )
         } else if (this.state.showMessage) {
@@ -192,11 +216,18 @@ class GameLogic extends Component {
                 <Snatch
                     sceneLocation={this.state.sceneLocation}
                     currentCharacter={this.state.currentCharacter}
-                    // choiceOneImg = {characters[this.state.currentCharacter].scene[this.state.sceneLocation].choiceOneImg}
-                    choiceOneImg={this.state.choiceOneImg}
-                    choiceOneAlt="ChoiceOne"
-                    choiceTwoImg={this.state.choiceTwoImg}
-                    choiceTwoAlt="ChoiceTwo"
+
+                    choiceOneImg= {this.state.choiceOneImg}
+                    choiceOneAlt="choiceOne"
+                    choiceOneText= {characters[this.state.currentCharacter].scene[this.state.sceneLocation].choiceOne}
+                    choiceOneID = "optionOneImg"
+
+                    choiceTwoImg= {this.state.choiceTwoImg}
+                    choiceTwoAlt= "choiceTwo"
+                    choiceTwoText= {characters[this.state.currentCharacter].scene[this.state.sceneLocation].choiceTwo}
+                    choiceTwoID = "optionTwoImg"
+
+                    checkBanderAnswer= {this.checkBanderAnswer.bind(this)}
                 />
             );
         } else if (this.state.showCanvas) {

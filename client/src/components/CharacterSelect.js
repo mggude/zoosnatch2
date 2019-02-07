@@ -5,25 +5,21 @@ import { HeaderH2, CharImageContainer, CharImageSquare, ImageSquare, ImageText }
 
 
 
-  ///////we will need to put a function for an onClick
+///////we will need to put a function for an onClick
 
 const SelectCharacter = props => {
   return (
     <>
       <title>Choose a Character</title>
-      <div className="w3-container">
-        <div className="container">
-          <HeaderH2 text="Choose a Character" />
 
-          <div className="row">
-            <CharImageContainer
-              giraffeImage={this.state.giraffeImage}
-              bearImage={this.state.bearImage}
-              monkeyImage={this.state.monkeyImage}
-            />
-          </div>
+      <HeaderH2 text="Choose a Character" />
 
-        </div>
+      <div className="row">
+        <CharImageContainer
+          giraffeImage={props.giraffeImage}
+          bearImage={props.bearImage}
+          monkeyImage={props.monkeyImage}
+        />
       </div>
     </>
   );
