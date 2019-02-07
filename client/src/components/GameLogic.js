@@ -81,6 +81,14 @@ class GameLogic extends Component {
             return 0;
         }
     };
+    // ======================== Update State From SelectCharacter Page ======================= //
+    selectedCharacterUpdatingState = (num) => {
+        var selectedCharacterImage = null;
+        this.setState({ currentCharacter: num});
+        this.setState({showCaracterSelect : false}, {showMessage: true});
+        this.render();
+    }
+
     // ========================Pass Photos to Bandersnatch Page ============================== //
     updateImage = () => {
         switch (this.state.currentCharacter) {
@@ -208,7 +216,7 @@ class GameLogic extends Component {
                     giraffeSelectImg = {this.state.giraffeSelectImg}
                     bearSelectImg = {this.state.bearSelectImg}
                     monkeySelectImg = {this.state.monkeySelectImg}
-                    canvasComplete = {this.selectedCharacterUpdatingState.bind(this)}
+                    selectedCharacterUpdatingState  = {this.selectedCharacterUpdatingState.bind(this)}
                 />
             )
         } else if (this.state.showMessage) {
