@@ -41,8 +41,8 @@ class GameLogic extends Component {
 
         showCaracterSelect: false,
         showMessage: false,
-        showSnatch: false,
-        showCanvas: true,
+        showSnatch: true,
+        showCanvas: false,
 
         giraffeSelectImg: null,
         bearSelectImg: null,
@@ -131,30 +131,32 @@ class GameLogic extends Component {
     // ========================Function To Pass To Bandersnatch Component ============================== //
 
     // ========================Function To Check Answer From Bandersnatch ============================== //
-    checkBanderAnswer = () => {
-        var userInput;
-        var correctAnswerText = shortToScene.answerTrue;
-        var wrongAnswerText = shortToScene.answerFalse;
-        var shortToScene = characters[this.state.currentCharacter].scene[this.state.sceneLocation];
+    listenBanderAnswer = () => {
+        const userInput = null;
+        console.log("started listenBanderAnswer")
     
         // set function to an onClick event to set userInput to the  
         document.getElementById("optionOneImg").addEventListener("click",function() {
             userInput = "choiceOne";
             // userChoiceText = characterArray[currentCharacterValue].scene[currentScene].choiceOne;
             console.log("clicked on image one");
-            // checkAnswer ();
+            this.checkAnswer (userInput);
         })
         document.getElementById("optionTwoImg").addEventListener("click",function() {
             userInput = "choiceTwo";
             // userChoiceText = characterArray[currentCharacterValue].scene[currentScene].choiceTwo;
             console.log("clicked on image two");
-            // checkAnswer ();
+            this.checkAnswer (userInput);
         })
+    }   
+    checkBanderAnswer = (userInput) => {
+        const shortToScene = characters[this.state.currentCharacter].scene[this.state.sceneLocation];
+
+        console.log("started checkBanderAnswer")
 
         if (userInput === shortToScene.correctAnswer) {
             console.log("Correct answer!");
             console.log("You chose: " + userInput);
-            correctAnswerText = shortToScene.answerTrue
             // update points function
             if (this.state.sceneLocation >= 3) {
                 // set showSnatch to false
@@ -174,14 +176,13 @@ class GameLogic extends Component {
         } else if (userInput !== shortToScene.correctAnswer) {
             console.log("WRONG answer!");
             console.log("You chose: " + userInput);
-            wrongAnswerText = shortToScene.answerFalse
                 // set showSnatch to false
                 // set showMessage to true
                     // pass in new props to render answerFalse
                     // pass in new props to render button button text to "Go to Leaderboards"
                     // pass in new props to render button to upload state to database, send to leaderboard HTML page
         }
-    }   
+    }
     // ========================Function To Update State From Canvas ============================== //
     canvasComplete = (canvasPoints) => {
         // line 220 from canvas, function checksceneLocationComplete
@@ -192,7 +193,6 @@ class GameLogic extends Component {
     }
     // ========================Functionality of GameLogic Component ============================== //
     componentDidMount() {
-        // this.startGame();
         this.updateImage();
         console.log("SwitchCase with result of: Char:" + this.state.currentCharacter + " | Scene: " + this.state.sceneLocation + " | ImageOneValue: " + this.state.choiceOneImg + " | ImageTwoValue: " + this.state.choiceTwoImg);
     }
@@ -202,6 +202,9 @@ class GameLogic extends Component {
             return (
                 <CharacterSelect 
                     unlockedCharacters = {this.state.unlockedCharacters}
+                    giraffeSelectImg = {this.state.giraffeSelectImg}
+                    bearSelectImg = {this.state.bearSelectImg}
+                    monkeySelectImg = {this.state.monkeySelectImg}
                 />
             )
         } else if (this.state.showMessage) {
@@ -213,8 +216,7 @@ class GameLogic extends Component {
                 <Snatch
                     sceneLocation={this.state.sceneLocation}
                     currentCharacter={this.state.currentCharacter}
-                    // choiceOneImg = {characters[this.state.currentCharacter].scene[this.state.sceneLocation].choiceOneImg}
-                    
+
                     choiceOneImg= {this.state.choiceOneImg}
                     choiceOneAlt="choiceOne"
                     choiceOneText= {characters[this.state.currentCharacter].scene[this.state.sceneLocation].choiceOne}

@@ -21,6 +21,7 @@ const ImageContainer = (props) => {
                             <ImageSquare
                                 imgsrc={props.choiceOneImg}
                                 altText={props.choiceOneAlt}
+                                id={props.choiceOneID}
                             />
                             <p>{props.choiceOneText}</p>
                         </div>
@@ -30,10 +31,12 @@ const ImageContainer = (props) => {
                             <ImageSquare
                                 imgsrc={props.choiceTwoImg}
                                 altText={props.choiceTwoAlt}
+                                id={props.choiceTwoID}
                             />
                             <p>{props.choiceTwoText}</p>
                         </div>
                     </Col>
+                
                 </Row>
             </Container>
         </>
