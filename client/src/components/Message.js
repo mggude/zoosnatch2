@@ -8,11 +8,14 @@ export const Message = (props) => {
             <Container>
                 <Row>
                     <Col md="12">
-                        <p>{props.message}</p>
+
+                        <h2>{props.messageText}</h2>
+
                     </Col>
                 </Row>
                 <Row>
                     <Col md="12">
+                        <span onClick={() => props.selectedCharacterUpdatingState()}> </span>
                         <Button onClick={props.handleButtonClick} color="success" block>{props.buttonText}</Button>
                     </Col>
                 </Row>
