@@ -31,10 +31,11 @@ class Canvas extends Component {
             monkeyHealth: 0,
             touching: false,
             //==== SCENE WILL EQUAL DATA.SCENE=====
-            scene: data.sceneLocation,
+            scene: 0,
             falling: false,
             data: data,
-            points: data.points
+            points: data.points,
+            sceneComplete: false
         }
         this.background = [];
         this.characters = [];
@@ -91,6 +92,7 @@ class Canvas extends Component {
     //============================================
     //starts game and activates key press/screen touch listener on component mounting
     componentDidMount() {
+        console.log("mounted")
         // console.log("props: ", this.props)
         window.addEventListener('keydown', this.handleKeys.bind(this, true));
         window.addEventListener('keyup', this.handleKeys.bind(this, false));
@@ -108,26 +110,28 @@ class Canvas extends Component {
 
     //update the canvas
     update() {
-
-        this.state.points = (Math.floor((1 - this.state.health) * 1000));
-        // console.log("update called")
-        const context = this.state.context;
-        context.save();
-        context.scale(this.state.screen.ratio, this.state.screen.ratio);
-        context.globalAlpha = 0.001;
-        // This calls a function that loops through an array updating each object
-        this.updateObjects(this.background, 'background');
-        this.updateObjects(this.characters, 'characters');
-        this.updateObjects(this.objects, 'object');
-        if (this.state.scene === 2) {
-            this.updateObjects(this.monkey, 'object');
+        if (this.state.sceneComplete === false) {
+            this.state.points = (Math.floor((1 - this.state.health) * 1000));
+            // console.log("update called")
+            const context = this.state.context;
+            context.save();
+            context.scale(this.state.screen.ratio, this.state.screen.ratio);
+            context.globalAlpha = 0.001;
+            // This calls a function that loops through an array updating each object
+            this.updateObjects(this.background, 'background');
+            this.updateObjects(this.characters, 'characters');
+            this.updateObjects(this.objects, 'object');
+            if (this.state.scene === 2) {
+                this.updateObjects(this.monkey, 'object');
+            }
+            this.updateObjects(this.health, 'health');
+            this.checkObjectsTouching(this.characters[0], this.monkey[0]);
+            context.restore();
+            // Next frame
+            requestAnimationFrame(() => { this.update() });
+            this.checkSceneComplete(this.characters[0]);
         }
-        this.updateObjects(this.health, 'health');
-        this.checkObjectsTouching(this.characters[0], this.monkey[0]);
-        context.restore();
-        // Next frame
-        requestAnimationFrame(() => { this.update() });
-        this.checkSceneComplete(this.characters[0]);
+       
     }
 
     //initial game start
@@ -149,6 +153,7 @@ class Canvas extends Component {
         } else if (this.state.scene === 2) {
             this.generateObjects(1);
         }
+        this.state.sceneComplete = false;
     }
 
     generateObjects(howMany) {
@@ -191,7 +196,7 @@ class Canvas extends Component {
             if (this.state.scene === 0) {
                 if (object.x < (characters.x + characters.width) && object.x > characters.x && object.y > characters.y) {
                     this.setState({
-                        health: this.state.health + .005,
+                        // health: this.state.health + .005,
                         touching: true
                     });
                 }
@@ -225,8 +230,19 @@ class Canvas extends Component {
     }
 
     checkSceneComplete(characters) {
-        if (characters.x > this.state.screen.width) {
-            this.state.data.canvasComplete(this.state.points);
+        if (characters.x > this.state.screen.width && !this.state.sceneComplete && this.state.scene === 2) {
+            window.location.href = "/leaderboard";
+        }
+        if (characters.x > this.state.screen.width && !this.state.sceneComplete) {
+            this.state.sceneComplete = true;
+            this.state.scene ++;
+            this.background = [];
+            this.characters = [];
+            this.objects = [];
+            this.monkey = [];
+            this.health = [];
+            this.poop = [];
+            this.componentDidMount();
         }
     }
 

@@ -39,10 +39,10 @@ class GameLogic extends Component {
         sceneLocation: 0,
         points: 0,
 
-        showCaracterSelect: true,
+        showCaracterSelect: false,
         showMessage: false,
         showSnatch: false,
-        showCanvas: false,
+        showCanvas: true,
 
         giraffeSelectImg: StaticGiraffe,
         bearSelectImg: StaticBear,
@@ -53,8 +53,13 @@ class GameLogic extends Component {
         choiceTwoImg: null,
         choiceTwoAlt: null,
         correctAnswer: null,
+
     }
 
+
+forceUpdateHandler(){
+  this.forceUpdate.bind(this);
+};
 
     // ======================== Display Current Page Component ============================== //
   
@@ -86,7 +91,7 @@ class GameLogic extends Component {
         var selectedCharacterImage = null;
         this.setState({ currentCharacter: num});
         this.setState({showCaracterSelect : false}, {showMessage: true});
-        this.render();
+        this.forceUpdateHandler();
     }
 
     // ========================Pass Photos to Bandersnatch Page ============================== //
