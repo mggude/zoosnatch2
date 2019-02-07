@@ -8,7 +8,9 @@ export const Message = (props) => {
             <Container>
                 <Row>
                     <Col md="12">
+
                         <h2>{props.messageText}</h2>
+
                     </Col>
                 </Row>
                 <Row>
