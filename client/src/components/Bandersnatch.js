@@ -24,11 +24,11 @@ const Snatch = (props) => {
                             choiceTwoAlt={props.choiceTwoAlt}
                             choiceTwoImg={props.choiceTwoImg}
                         />
-                        {/* <ProgressBar /> */}
+                        <ProgressBar />
                         {/* <ImageText 
                                 sceneLocation = {props.sceneLocation}
                                 currentCharacter = {props.currentCharacter}
-                            /> */}
+                            /> */} 
                     </div>
 
                 </div>
