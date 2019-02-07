@@ -21,8 +21,11 @@ const Snatch = (props) => {
                             currentCharacter={props.currentCharacter}
                             choiceOneAlt={props.choiceOneAlt}
                             choiceOneImg={props.choiceOneImg}
+                            choiceOneID={props.choiceOneID}
                             choiceTwoAlt={props.choiceTwoAlt}
                             choiceTwoImg={props.choiceTwoImg}
+                            choiceTwoID={props.choiceTwoID}
+                            checkBanderAnswer={props.checkBanderAnswer()}
                         />
                         <ProgressBar />
                         {/* <ImageText 

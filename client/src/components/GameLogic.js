@@ -41,8 +41,8 @@ class GameLogic extends Component {
 
         showCaracterSelect: false,
         showMessage: false,
-        showSnatch: false,
-        showCanvas: true,
+        showSnatch: true,
+        showCanvas: false,
 
         giraffeSelectImg: null,
         bearSelectImg: null,
@@ -202,6 +202,9 @@ class GameLogic extends Component {
             return (
                 <CharacterSelect 
                     unlockedCharacters = {this.state.unlockedCharacters}
+                    giraffeSelectImg = {this.state.giraffeSelectImg}
+                    bearSelectImg = {this.state.bearSelectImg}
+                    monkeySelectImg = {this.state.monkeySelectImg}
                 />
             )
         } else if (this.state.showMessage) {
