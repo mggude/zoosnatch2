@@ -7,6 +7,7 @@ import Game from "./pages/Game"
 import "./App.css"
 // import SelectCharacter from './components/characterSelect';
 import Leaderboard from './pages/Leaderboard/index';
+import Contact from './pages/Contact/index';
 
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
         <Route exact path="/game" component={Game} />
         <Route exact path="/canvas" component={Canvas} />
         <Route exact path="/leaderboard" component={Leaderboard} />
+        <Route exact path="/contact" component={Contact} />
 
         </>
       </Router>
