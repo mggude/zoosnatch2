@@ -20,26 +20,29 @@ const ImageContainer = (props) => {
                 <Row>
                     <Col>
                         <div className="optionOneclassName" style={styles}>
+                        <span onClick={() => props.checkBanderAnswer (props.id)}>
+
                             <ImageSquare
                                 imgsrc={props.choiceOneImg}
                                 altText={props.choiceOneAlt}
                                 id={props.choiceOneID}
-                                checkBanderAnswer={props.checkBanderAnswer.bind(this)}
 
                             />
                             <p>{props.choiceOneText}</p>
-                            <span onClick= { () => (props.checkBanderAnswer(props.choiceOneID))} />
+                            </span>
                         </div>
                     </Col>
                     <Col>
                         <div className="optionTwoclassName" style={styles1}>
+                        <span onClick={() => props.checkBanderAnswer (props.id)}>
+
                             <ImageSquare
                                 imgsrc={props.choiceTwoImg}
                                 altText={props.choiceTwoAlt}
                                 id={props.choiceTwoID}
                             />
                             <p>{props.choiceTwoText}</p>
-                            <span onClick= { () => (props.checkBanderAnswer(props.choiceTwoID))} />
+                            </span>
                         </div>
                     </Col>
                 </Row>

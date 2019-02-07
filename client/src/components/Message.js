@@ -9,6 +9,7 @@ export const Message = (props) => {
                 <Row>
                     <Col md="12">
                         <p>{props.message}</p>
+                        <h2>Hello World</h2>
                     </Col>
                 </Row>
                 <Row>
