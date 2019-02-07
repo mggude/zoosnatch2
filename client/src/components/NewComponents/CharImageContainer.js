@@ -19,7 +19,7 @@ class CharImageContainer extends Component {
         return (
             // <h2>{props}</h2>
             <>
-                <div className="col-md-6 optionOneclassName">
+                <div className="col-md-3 optionOneclassName">
                     {/* how to pass props from grandparent?? */}
                     <CharImageSquare 
                         imgsrc = {this.state.giraffeImage}
@@ -27,14 +27,14 @@ class CharImageContainer extends Component {
                     />
 
                 </div>
-                <div className="col-md-6 optionTwoclassName">
+                <div className="col-md-3 optionTwoclassName">
                     <CharImageSquare 
                         imgsrc = {this.state.bearImage}
                         altText = {this.state.bearAlt}
                     />
 
                 </div>
-                <div className="col-md-6 optionThreeclassName">
+                <div className="col-md-3 optionThreeclassName">
                     <CharImageSquare 
                         imgsrc = {this.state.monkeyImage}
                         altText = {this.state.monkeyAlt}
