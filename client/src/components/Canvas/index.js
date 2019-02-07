@@ -196,7 +196,7 @@ class Canvas extends Component {
             if (this.state.scene === 0) {
                 if (object.x < (characters.x + characters.width) && object.x > characters.x && object.y > characters.y) {
                     this.setState({
-                        health: this.state.health + .005,
+                        health: this.state.health + .002,
                         touching: true
                     });
                 }
