@@ -5,7 +5,7 @@ ZooSnatch is a passion project inspired by Netflix's BanderSnatch.
 Zoo Snatch is a Choose Your Own Adventure game that is built using Create React App and User Authentication. It's fun, it's relevant, it helped us learn how to implement different technologies, it is applicable to many different skill sets, and it's accessible and usable for anyone!
 
 ## Deployment
-To view Zoo Snatch without downloading locally, browse the site hosted on [Heroku] (https://zoosnatch2.herokuapp.com/) by creating a username and password.
+To view Zoo Snatch without downloading locally, browse the site hosted on [Heroku](https://zoosnatch2.herokuapp.com/) by creating a username and password.
 
 ## Game Play
 Users navigate to the Zoo Snatch site and are prompted to either log in or create a new username and password.
