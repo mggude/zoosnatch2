@@ -52,7 +52,7 @@ function Contact() {
       </Row>
       <footer class="fixed-bottom text-center">
         <div class="container">
-          <a href="/home">Home</a>
+          <a href="/">Home</a>
         </div>
       </footer>
     </Container>
